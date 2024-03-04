@@ -7,9 +7,9 @@
     tools:context=".Second2Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
         <Button
                 android:id="@+id/button_second"
@@ -19,17 +19,21 @@
                 app:layout_constraintBottom_toTopOf="@id/textview_second"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"/>
-
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.534"/>
         <TextView
                 android:id="@+id/textview_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text=" Prof Ben Is Very Handsome"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_second"/>
+                app:layout_constraintTop_toBottomOf="@id/button_second" app:layout_constraintHorizontal_bias="0.497"/>
+        <ImageView
+                android:src="@drawable/screenshot_2024_03_04_at_5_47_15pm"
+                android:layout_width="182dp"
+                android:layout_height="151dp" android:id="@+id/imageView" tools:layout_editor_absoluteY="428dp"
+                app:layout_constraintEnd_toEndOf="@+id/button_second"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
