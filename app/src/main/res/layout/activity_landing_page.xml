@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -99,75 +99,6 @@
             app:layout_constraintTop_toBottomOf="@+id/MainSearchBar"
             app:layout_constraintVertical_bias="0.042" />
 
-        <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_mylocation"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="34dp"
-                tools:layout_editor_absoluteY="11dp"/>
-        <fragment
-                android:id="@+id/nav_host_fragment_activity_landing_page"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/mobile_navigation"
-                tools:layout_editor_absoluteY="0dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="4dp"/>
-        <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.492"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UserGreeting"
-                app:layout_constraintVertical_bias="0.036"
-                app:srcCompat="@drawable/group_49"/>
-
-        <EditText
-                android:id="@+id/MainSearchBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Search"
-                app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.169"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
-                app:layout_constraintVertical_bias="0.102"/>
-        <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="56dp"
-                android:layout_height="46dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/MainSearchBar"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.101"
-                app:srcCompat="@drawable/settings"/>
-
-        <TextView
-                android:id="@+id/UserGreeting"
-                android:layout_width="265dp"
-                android:layout_height="46dp"
-                android:text="Good Morning Jay! These are your events for the day :)"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.232"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MainSearchBar"
-                app:layout_constraintVertical_bias="0.052"/>
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
