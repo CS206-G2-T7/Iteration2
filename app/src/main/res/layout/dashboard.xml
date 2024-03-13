@@ -36,13 +36,13 @@
         tools:ignore="UnknownId">
 
         <EditText
-            android:id="@+id/editTextText2"
-            android:layout_width="370dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:text="test" />
+                android:id="@+id/editTextText2"
+                android:layout_width="370dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Search"/>
 
         <ImageView
             android:id="@+id/imageView5"
