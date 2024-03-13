@@ -2,6 +2,9 @@ package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 
 public class LandingPage extends AppCompatActivity {
+    ImageButton button;
 
     private ActivityLandingPageBinding binding;
 
@@ -21,6 +25,14 @@ public class LandingPage extends AppCompatActivity {
 
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        button = (ImageButton) findViewById(R.id.imageButton1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openEventDetails();
+            }
+        });
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -37,7 +49,8 @@ public class LandingPage extends AppCompatActivity {
     }
 
     public void openEventDetails(){
-        Intent intent = new Intent(this, EventDetails)
+        Intent intent = new Intent(this, EventDetails.class);
+        startActivity(intent);
     }
 
 }
