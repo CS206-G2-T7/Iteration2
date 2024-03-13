@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:background="@color/dark_green"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
@@ -25,6 +25,16 @@
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="18dp" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/group_33__1_"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="377dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -36,13 +46,13 @@
         tools:ignore="UnknownId">
 
         <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="370dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Search"/>
+            android:id="@+id/editTextText2"
+            android:layout_width="370dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Search" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -55,43 +65,28 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="226dp">
+        tools:layout_editor_absoluteX="65dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"></LinearLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:text="Good Morning Jay! These are your events for the day :)"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/group_49" />
+
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/group_49"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="175dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/group_33__1_"
-        tools:layout_editor_absoluteX="377dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Good Morning Jay! These are your events for the day :)"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="141dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
