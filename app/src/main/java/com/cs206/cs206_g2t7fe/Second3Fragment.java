@@ -8,18 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import com.cs206.cs206_g2t7fe.databinding.FragmentSecondBinding;
 
-public class SecondFragment extends Fragment {
-    private FragmentSecondBinding binding;
+import com.cs206.cs206_g2t7fe.databinding.FragmentSecond3Binding;
+
+public class Second3Fragment extends Fragment {
+
+    private FragmentSecond3Binding binding;
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentSecond3Binding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -27,13 +29,10 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });
+        binding.buttonSecond.setOnClickListener(v ->
+                NavHostFragment.findNavController(Second3Fragment.this)
+                        .navigate(R.id.action_Second3Fragment_to_First3Fragment)
+        );
     }
 
     @Override
