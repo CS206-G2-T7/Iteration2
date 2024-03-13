@@ -1,5 +1,6 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +34,10 @@ public class LandingPage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_landing_page);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    public void openEventDetails(){
+        Intent intent = new Intent(this, EventDetails)
     }
 
 }
