@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
+    AppCompatButton testButton; // all instances of this is a testing button
 
     private ActivityLandingPageBinding binding;
 
@@ -34,6 +37,13 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        // test button
+        testButton = (AppCompatButton) findViewById(R.id.button5);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { openQuizPage(); }
+        });
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -50,6 +60,12 @@ public class LandingPage extends AppCompatActivity {
 
     public void openEventDetails(){
         Intent intent = new Intent(this, EventDetails.class);
+        startActivity(intent);
+    }
+
+    // test method
+    public void openQuizPage() {
+        Intent intent = new Intent(this, QuizFirstPage.class);
         startActivity(intent);
     }
 
