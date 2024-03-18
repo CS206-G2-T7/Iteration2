@@ -37,7 +37,7 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        /*
+
         newEventButton = (AppCompatButton) findViewById(R.id.button6);
         newEventButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -45,8 +45,6 @@ public class LandingPage extends AppCompatActivity {
                 createNewEvent();
             }
         });
-
-         */
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -68,7 +66,7 @@ public class LandingPage extends AppCompatActivity {
     }
 
     public void createNewEvent() {
-        Intent intent = new Intent(this, AddNewActivity.class);
+        Intent intent = new Intent(this, CreateEvent.class);
         startActivity(intent);
     }
 }

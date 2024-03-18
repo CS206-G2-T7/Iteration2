@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.564" />
 
-    <TextView
+    <EditText
         android:id="@+id/event_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.014" />
 
 
-    <TextView
+    <EditText
         android:id="@+id/event_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
