@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
+    AppCompatButton newEventButton;
 
     private ActivityLandingPageBinding binding;
 
@@ -24,6 +26,7 @@ public class LandingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
         button = (ImageButton) findViewById(R.id.imageButton1);
@@ -33,6 +36,17 @@ public class LandingPage extends AppCompatActivity {
                 openEventDetails();
             }
         });
+
+        /*
+        newEventButton = (AppCompatButton) findViewById(R.id.button6);
+        newEventButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                createNewEvent();
+            }
+        });
+
+         */
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -53,4 +67,8 @@ public class LandingPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void createNewEvent() {
+        Intent intent = new Intent(this, AddNewActivity.class);
+        startActivity(intent);
+    }
 }

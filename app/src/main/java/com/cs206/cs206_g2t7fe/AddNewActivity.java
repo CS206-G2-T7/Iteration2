@@ -1,6 +1,8 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
+import com.cs206.cs206_g2t7fe.databinding.ActivityMainActivitiesBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -19,6 +21,9 @@ public class AddNewActivity extends AppCompatActivity {
 
         binding = ActivityAddNewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
