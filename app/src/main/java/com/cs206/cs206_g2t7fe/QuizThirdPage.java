@@ -18,54 +18,48 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.cs206.cs206_g2t7fe.databinding.ActivityQuizFirstPageBinding;
 
-public class QuizFirstPage extends AppCompatActivity {
+public class QuizThirdPage extends AppCompatActivity {
 
-//    private AppBarConfiguration appBarConfiguration;
-//    private ActivityQuizFirstPageBinding binding;
+    //    private AppBarConfiguration appBarConfiguration;
+    //    private ActivityQuizFirstPageBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_first_page);
+        setContentView(R.layout.activity_quiz_third_page);
 
         // determinate progress
         ProgressBar bar = findViewById(R.id.progressBar);
-        AppCompatButton next = findViewById(R.id.quiz_next);
+        AppCompatButton next = findViewById(R.id.quiz_lets_go);
 
         // set up options buttons and next button
         setUpButtons(next);
     }
 
-    // sets "next" button to open next quiz page
-    public void openNextQuizPage() {
-        Intent intent = new Intent(this, QuizSecondPage.class);
+    // sets "lets go" button to landing page
+    public void openLandingPage() {
+        Intent intent = new Intent(this, LandingPage.class);
         startActivity(intent);
     }
 
     // sets up quiz option buttons
     public void setUpButtons(AppCompatButton next) {
         // retrieve option buttons
-        AppCompatButton option1 = findViewById(R.id.quiz_qn1_op1);
-        AppCompatButton option2 = findViewById(R.id.quiz_qn1_op2);
-        AppCompatButton option3 = findViewById(R.id.quiz_qn1_op3);
-        AppCompatButton option4 = findViewById(R.id.quiz_qn1_op4);
-        AppCompatButton option5 = findViewById(R.id.quiz_qn1_op5);
-        AppCompatButton option6 = findViewById(R.id.quiz_qn1_op6);
+        AppCompatButton option1 = findViewById(R.id.quiz_qn3_op1);
+        AppCompatButton option2 = findViewById(R.id.quiz_qn3_op2);
+        AppCompatButton option3 = findViewById(R.id.quiz_qn3_op3);
 
         // change colours of options when clicked
         option1.setOnClickListener(colourChangeListener(option1));
         option2.setOnClickListener(colourChangeListener(option2));
         option3.setOnClickListener(colourChangeListener(option3));
-        option4.setOnClickListener(colourChangeListener(option4));
-        option5.setOnClickListener(colourChangeListener(option5));
-        option6.setOnClickListener(colourChangeListener(option6));
 
         // set up "next" button
-        setUpNextButton(next);
+        setUpLetsGoButton(next);
     }
 
     // 2 main functions for the "next" button
-    public void setUpNextButton(Button next) {
+    public void setUpLetsGoButton(Button next) {
 
         // set default state
         next.setEnabled(false);
@@ -75,7 +69,7 @@ public class QuizFirstPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // open the next quiz page
-                openNextQuizPage();
+                openLandingPage();
             }
         });
     }
@@ -90,9 +84,10 @@ public class QuizFirstPage extends AppCompatActivity {
 
 
                 // when any options buttons is clicked, the "next" button will be enabled
-                AppCompatButton next = (AppCompatButton) findViewById(R.id.quiz_next);
+                AppCompatButton next = (AppCompatButton) findViewById(R.id.quiz_lets_go);
                 next.setEnabled(true);
                 next.setBackgroundResource(R.drawable.button_background);
+
             }
         };
     }
