@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/mobile_navigation2"
-            tools:layout_editor_absoluteY="89dp" tools:layout_editor_absoluteX="0dp"/>
+            tools:layout_editor_absoluteY="56dp" tools:layout_editor_absoluteX="0dp"/>
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
@@ -95,12 +95,13 @@
             app:layout_constraintEnd_toEndOf="@+id/imageButton6"
             app:layout_constraintVertical_bias="0.461" app:layout_constraintStart_toStartOf="@+id/imageButton6"
             app:layout_constraintHorizontal_bias="0.122"/>
-    <ImageView
+    <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/group_48back" android:id="@+id/imageView10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.077"
-            app:layout_constraintVertical_bias="0.0"/>
+            android:layout_height="wrap_content" app:srcCompat="@drawable/group_48back" android:id="@+id/backButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="@+id/my_toolbar"
+            app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_add_new"
+            android:backgroundTint="#C1FFFFFF" app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintVertical_bias="0.018"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

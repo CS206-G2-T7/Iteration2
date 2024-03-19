@@ -1,6 +1,9 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
 import com.cs206.cs206_g2t7fe.databinding.ActivityMainActivitiesBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -13,6 +16,8 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityAddNewBinding;
 
 public class AddNewActivity extends AppCompatActivity {
 
+    ImageButton backButton;
+
     private ActivityAddNewBinding binding;
 
     @Override
@@ -24,6 +29,7 @@ public class AddNewActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -34,6 +40,19 @@ public class AddNewActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_add_new);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMainPage();
+            }
+        });
+
+    }
+    public void backToMainPage(){
+        Intent intent = new Intent(this, LandingPage.class);
+        startActivity(intent);
     }
 
 }
