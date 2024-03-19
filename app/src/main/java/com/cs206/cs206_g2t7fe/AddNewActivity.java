@@ -1,6 +1,7 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,6 +18,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityAddNewBinding;
 public class AddNewActivity extends AppCompatActivity {
 
     ImageButton backButton;
+    ImageButton addByInterestButton;
 
     private ActivityAddNewBinding binding;
 
@@ -49,9 +51,22 @@ public class AddNewActivity extends AppCompatActivity {
             }
         });
 
+        addByInterestButton = (ImageButton)  findViewById(R.id.addByLocation);
+        addByInterestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addByLocationNext();
+            }
+        });
+
     }
     public void backToMainPage(){
         Intent intent = new Intent(this, LandingPage.class);
+        startActivity(intent);
+    }
+
+    public void addByLocationNext(){
+        Intent intent = new Intent(this, EventCreationConfirmationPage.class);
         startActivity(intent);
     }
 
