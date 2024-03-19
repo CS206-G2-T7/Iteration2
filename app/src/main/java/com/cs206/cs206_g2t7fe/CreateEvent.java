@@ -9,9 +9,12 @@ import java.util.Random;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -166,7 +169,7 @@ public class CreateEvent extends AppCompatActivity {
                     // else call the method to add
                     // data to our database.
                     System.out.println("This is the date: " + epochMillis);
-                    addDataToFirebase("junjieoi", name, epochMillis);
+                    addDataToFirebase("junjieoi", event_name[0], epochMillis);
                     addEventLocation();
                 }
             }
@@ -196,25 +199,23 @@ public class CreateEvent extends AppCompatActivity {
 
         System.out.println(userEvents.getEventID());
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // inside the method of on Data change we are setting
-                // our object class to our database reference.
-                // data base reference will sends data to firebase.
-                databaseReference.setValue(userEvents);
+        System.out.println(userEvents.toString());
 
-                // after adding this data we are showing toast message.
-                Toast.makeText(CreateEvent.this, "data added", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // if the data is not added or it is cancelled then
-                // we are displaying a failure toast message.
-                Toast.makeText(CreateEvent.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
+        databaseReference.setValue(userEvents)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Write was successful!
+                        Toast.makeText(CreateEvent.this, "Data added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Write failed
+                        Toast.makeText(CreateEvent.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void addEventLocation(){
