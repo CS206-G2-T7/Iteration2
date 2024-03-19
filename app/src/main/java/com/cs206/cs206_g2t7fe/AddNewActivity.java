@@ -18,7 +18,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityAddNewBinding;
 public class AddNewActivity extends AppCompatActivity {
 
     ImageButton backButton;
-    ImageButton addByInterestButton;
+    ImageButton addByLocationButton;
 
     private ActivityAddNewBinding binding;
 
@@ -51,8 +51,8 @@ public class AddNewActivity extends AppCompatActivity {
             }
         });
 
-        addByInterestButton = (ImageButton)  findViewById(R.id.addByLocation);
-        addByInterestButton.setOnClickListener(new View.OnClickListener() {
+        addByLocationButton = (ImageButton)  findViewById(R.id.addByLocation);
+        addByLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addByLocationNext();
@@ -66,7 +66,7 @@ public class AddNewActivity extends AppCompatActivity {
     }
 
     public void addByLocationNext(){
-        Intent intent = new Intent(this, EventCreationConfirmationPage.class);
+        Intent intent = new Intent(this, VenueRecommendations.class);
         startActivity(intent);
     }
 

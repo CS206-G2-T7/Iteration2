@@ -1,6 +1,11 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -11,6 +16,8 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityVenueRecommendationsBinding;
 
 public class VenueRecommendations extends AppCompatActivity {
 
+    Button confirmButton;
+
     private ActivityVenueRecommendationsBinding binding;
 
     @Override
@@ -19,6 +26,19 @@ public class VenueRecommendations extends AppCompatActivity {
 
         binding = ActivityVenueRecommendationsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
+
+        confirmButton = (Button) findViewById(R.id.completeButton);
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmation();
+            }
+        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -30,5 +50,11 @@ public class VenueRecommendations extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+    public void confirmation(){
+        Intent intent = new Intent(this, EventCreationConfirmationPage.class);
+        startActivity(intent);
+    }
+
 
 }
