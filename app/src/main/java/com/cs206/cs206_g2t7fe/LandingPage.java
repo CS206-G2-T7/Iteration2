@@ -71,7 +71,7 @@ public class LandingPage extends AppCompatActivity {
     }
 
     public void openEventDetails(){
-        Intent intent = new Intent(this, EventDetails.class);
+        Intent intent = new Intent(this, CreateEvent.class);
         startActivity(intent);
     }
 
