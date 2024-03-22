@@ -2,11 +2,14 @@ package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.cs206.cs206_g2t7fe.ui.CustomLoading;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -18,6 +21,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivitySurpriseMePageBinding;
 public class SurpriseMePage extends AppCompatActivity {
 
     ImageButton addEventButton;
+    ImageButton generateButton;
     private ActivitySurpriseMePageBinding binding;
 
     @Override
@@ -36,6 +40,24 @@ public class SurpriseMePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addNewEvent();
+            }
+        });
+
+        generateButton = (ImageButton) findViewById(R.id.imageButton4);
+        final CustomLoading customLoading = new CustomLoading(SurpriseMePage.this);
+
+        generateButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                customLoading.startLoadingDialog();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    // Replace with backend code
+                    @Override
+                    public void run() {
+                        customLoading.dismissDialog();
+                    }
+                }, 5000);
             }
         });
 
