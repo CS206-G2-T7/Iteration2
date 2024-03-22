@@ -17,7 +17,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
-    AppCompatButton newEventButton;
+    AppCompatButton newEventButton, surpriseMeButton;
 
     private ActivityLandingPageBinding binding;
 
@@ -46,8 +46,18 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        surpriseMeButton = (AppCompatButton) findViewById(R.id.surpriseMe);
+        surpriseMeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                openSupriseMePage();
+            }
+        });
+
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -67,6 +77,11 @@ public class LandingPage extends AppCompatActivity {
 
     public void createNewEvent() {
         Intent intent = new Intent(this, CreateEvent.class);
+        startActivity(intent);
+    }
+
+    public void openSupriseMePage(){
+        Intent intent = new Intent(this, SurpriseMeConfirmation.class);
         startActivity(intent);
     }
 }

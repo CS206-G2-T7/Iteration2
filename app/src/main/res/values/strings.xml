@@ -45,4 +45,5 @@
     <string name="title_activity_add_new">AddNewActivity</string>
     <string name="title_activity_event_creation_confirmation_page">EventCreationConfirmationPage</string>
     <string name="title_activity_venue_recommendations">VenueRecommendations</string>
+    <string name="title_activity_surprise_me_confirmation">SurpriseMeConfirmation</string>
 </resources>

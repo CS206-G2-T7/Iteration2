@@ -148,7 +148,7 @@
                 app:layout_constraintHorizontal_bias="0.114"/>
 
         <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button5"
+                android:id="@+id/surpriseMe"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="18dp"
@@ -172,7 +172,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.809"
-                app:layout_constraintStart_toEndOf="@+id/button5"
+                app:layout_constraintStart_toEndOf="@+id/surpriseMe"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton2"
                 app:layout_constraintVertical_bias="0.934"/>
         <ImageButton
