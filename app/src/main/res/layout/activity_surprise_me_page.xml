@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/container"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="?attr/actionBarSize">
@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/bottom_nav_menu"/>
+            />
 
     <fragment
             android:id="@+id/nav_host_fragment_activity_surprise_me_page"
@@ -30,6 +30,76 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/mobile_navigation6"
+    />
+    <TextView
+            android:text="Did someone say surprise ? Because here's our suggestion that we think will surprise you :)"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" android:id="@+id/textView10"
+            android:textAlignment="center" android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.495" app:layout_constraintVertical_bias="0.0"/>
+    <androidx.cardview.widget.CardView
+            android:layout_width="375dp"
+            android:layout_height="257dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/cardView"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.131"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/done" android:id="@+id/addEventButton"
+            android:layout_marginTop="28dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toTopOf="@+id/nav_view"
+            app:layout_constraintHorizontal_bias="0.489" app:layout_constraintVertical_bias="0.011"
+            android:backgroundTint="#FFFFFF"/>
+    <TextView
+            android:text="Like what you see ? "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/cardView"/>
+    <TextView
+            android:text="Add Event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView12"
+            android:textStyle="bold" android:fontFamily="sans-serif"
+            app:layout_constraintStart_toStartOf="@+id/addEventButton"
+            app:layout_constraintEnd_toEndOf="@+id/addEventButton"
+            app:layout_constraintTop_toTopOf="@+id/addEventButton"
+            app:layout_constraintBottom_toBottomOf="@+id/addEventButton"/>
+    <TextView
+            android:text="Don't like what you see ?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addEventButton" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.056"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/done" android:id="@+id/imageButton4"
+            android:backgroundTint="#FFFFFF" app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintVertical_bias="0.085"/>
+    <TextView
+            android:text="Generate Another Suggestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView14"
+            android:textStyle="bold" android:textSize="20dp" app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+            app:layout_constraintStart_toStartOf="@+id/imageButton4"
+            app:layout_constraintTop_toTopOf="@+id/imageButton4"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton4"/>
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

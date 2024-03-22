@@ -1,6 +1,10 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -11,6 +15,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivitySurpriseMePageBinding;
 
 public class SurpriseMePage extends AppCompatActivity {
 
+    ImageButton addEventButton;
     private ActivitySurpriseMePageBinding binding;
 
     @Override
@@ -19,6 +24,18 @@ public class SurpriseMePage extends AppCompatActivity {
 
         binding = ActivitySurpriseMePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
+
+        addEventButton = (ImageButton) findViewById(R.id.addEventButton);
+        addEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewEvent();
+            }
+        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -30,5 +47,11 @@ public class SurpriseMePage extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+    public void addNewEvent(){
+        Intent intent = new Intent(this, SurpriseMeConfirmation.class);
+        startActivity(intent);
+    }
+
 
 }

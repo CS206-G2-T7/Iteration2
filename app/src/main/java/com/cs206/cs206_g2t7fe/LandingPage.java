@@ -81,7 +81,7 @@ public class LandingPage extends AppCompatActivity {
     }
 
     public void openSupriseMePage(){
-        Intent intent = new Intent(this, SurpriseMeConfirmation.class);
+        Intent intent = new Intent(this, SurpriseMePage.class);
         startActivity(intent);
     }
 }
