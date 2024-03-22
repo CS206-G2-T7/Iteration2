@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -48,6 +50,14 @@ public class EventCreationConfirmationPage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_event_creation_confirmation_page);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_event_creation_confirmation_page);
+        if (navHostFragment != null) {
+            fragmentManager.beginTransaction().hide(navHostFragment).commit();
+            // Use this to show it again
+            // fragmentManager.beginTransaction().show(navHostFragment).commit();
+        }
     }
 
     public void backToMainPage(){

@@ -211,17 +211,17 @@
             app:srcCompat="@drawable/group_50" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="632dp"
-            android:background="@color/light_green"
-            app:itemIconTint="@drawable/icon_tint_selector"
-            app:labelVisibilityMode="unlabeled"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/bottom_nav_menu" />
+                android:id="@+id/nav_view"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@color/light_green"
+                app:itemIconTint="@drawable/icon_tint_selector"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/bottom_nav_menu" app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="1.0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
