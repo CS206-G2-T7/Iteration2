@@ -2,10 +2,13 @@ package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
+
+import com.cs206.cs206_g2t7fe.ui.CustomLoading;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -17,6 +20,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityVenueRecommendationsBinding;
 public class VenueRecommendations extends AppCompatActivity {
 
     Button confirmButton;
+    ImageButton generateButton;
 
     private ActivityVenueRecommendationsBinding binding;
 
@@ -37,6 +41,24 @@ public class VenueRecommendations extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 confirmation();
+            }
+        });
+
+        generateButton = (ImageButton) findViewById(R.id.generateAgain);
+        final CustomLoading customLoading = new CustomLoading(VenueRecommendations.this);
+
+        generateButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                customLoading.startLoadingDialog();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    // Replace with backend code
+                    @Override
+                    public void run() {
+                        customLoading.dismissDialog();
+                    }
+                }, 5000);
             }
         });
 

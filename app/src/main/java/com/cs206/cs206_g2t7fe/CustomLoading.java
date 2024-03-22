@@ -9,11 +9,11 @@ import com.cs206.cs206_g2t7fe.R;
 public class CustomLoading {
     private Activity activity;
     private AlertDialog dialog;
-    CustomLoading(Activity myActivity) {
+    public CustomLoading(Activity myActivity) {
         activity = myActivity;
     }
 
-    void startLoadingDialog() {
+    public void startLoadingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.custom_loading, null));
@@ -23,7 +23,7 @@ public class CustomLoading {
         dialog.show();
     }
 
-    void dismissDialog() {
+    public void dismissDialog() {
         dialog.dismiss();
     }
 }
