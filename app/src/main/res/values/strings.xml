@@ -56,4 +56,5 @@
     <string name="title_activity_surprise_me_confirmation">SurpriseMeConfirmation</string>
     <string name="title_activity_surprise_me_page">SurpriseMePage</string>
     <string name="title_activity_event_details">EventDetails</string>
+    <string name="title_activity_user_onboarding_page">UserOnboardingPage</string>
 </resources>

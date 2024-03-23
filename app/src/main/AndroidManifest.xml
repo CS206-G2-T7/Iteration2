@@ -17,6 +17,10 @@
             tools:remove="android:appComponentFactory"
             tools:targetApi="31">
         <activity
+                android:name=".UserOnboardingPage"
+                android:exported="false"
+                android:label="@string/title_activity_user_onboarding_page"/>
+        <activity
                 android:name=".RegistrationActivity"
                 android:exported="false"/>
         <activity
