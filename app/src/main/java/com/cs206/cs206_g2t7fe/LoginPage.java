@@ -44,7 +44,7 @@ public class LoginPage extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("UserEvents");
+        databaseReference = firebaseDatabase.getReference("UserInformation");
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -75,17 +75,23 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    private void getdata(String email) {
-        databaseReference.child(email).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    interface MyCallback {
+        void onCallback(Integer value);
+    }
+
+    private void getdata(String email, MyCallback myCallback) {
+
+        Query query = databaseReference.orderByChild("userName").equalTo(email);
+        query.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
                     System.out.println("Data Not Found");
-                }
-                else {
+                    myCallback.onCallback(0);
+                } else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
                     System.out.println("Data Found");
+                    myCallback.onCallback(0);
                 }
             }
         });
@@ -131,23 +137,25 @@ public class LoginPage extends AppCompatActivity {
                                                     Toast.LENGTH_LONG)
                                             .show();
 
-                                    getdata(email);
+                                    getdata(email, new MyCallback() {
+                                        @Override
+                                        public void onCallback(Integer value) {
+                                            if (value == 0){
+                                                // if sign-in is successful
+                                                // intent to home activity
+                                                Intent intent
+                                                        = new Intent(LoginPage.this,
+                                                        LandingPage.class);
+                                                startActivity(intent);
+                                            }else{
+                                                Toast.makeText(getApplicationContext(),
+                                                                "Login failed!!",
+                                                                Toast.LENGTH_LONG)
+                                                        .show();
+                                            }
+                                        }
+                                    });
 
-                                    // if sign-in is successful
-                                    // intent to home activity
-                                    Intent intent
-                                            = new Intent(LoginPage.this,
-                                            LandingPage.class);
-                                    startActivity(intent);
-                                }
-
-                                else {
-
-                                    // sign-in failed
-                                    Toast.makeText(getApplicationContext(),
-                                                    "Login failed!!",
-                                                    Toast.LENGTH_LONG)
-                                            .show();
                                 }
                             }
                         });
