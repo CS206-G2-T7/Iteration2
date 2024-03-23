@@ -18,7 +18,15 @@
             tools:targetApi="31">
         <activity
                 android:name=".LoginPage"
-                android:exported="false"/>
+                android:exported="true"
+                android:label="@string/title_activity_main_page"
+                android:theme="@style/Theme.CS206G2T7FE">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
                 android:name=".EventDetails"
                 android:exported="false"
@@ -62,13 +70,7 @@
                 android:name=".LandingPage"
                 android:exported="true"
                 android:label="@string/title_activity_main_page"
-                android:theme="@style/Theme.CS206G2T7FE">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+                android:theme="@style/Theme.CS206G2T7FE"/>
         <activity
                 android:name=".MainActivities"
                 android:exported="false"
