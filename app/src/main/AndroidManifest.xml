@@ -29,6 +29,18 @@
                 android:exported="false"
                 android:label="@string/title_activity_surprise_me_confirmation"/>
         <activity
+                android:name=".QuizFirstPage"
+                android:exported="false"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+                android:name=".QuizSecondPage"
+                android:exported="false"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+                android:name=".QuizThirdPage"
+                android:exported="false"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
                 android:name=".VenueRecommendations"
                 android:exported="false"
                 android:label="@string/title_activity_venue_recommendations"/>
