@@ -18,4 +18,5 @@
     <color name="btn_dark_green">#31B16C</color>
     <color name="btn_quiz_unclicked">#D7D7D7</color>
     <color name="btn_quiz_clicked">#33B36E</color>
+    <color name="back_button_background">#C1FFFFFF</color>
 </resources>
