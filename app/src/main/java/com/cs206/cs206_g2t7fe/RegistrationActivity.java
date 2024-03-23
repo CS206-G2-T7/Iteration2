@@ -6,13 +6,19 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
+import java.time.LocalDate;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -20,6 +26,18 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button Btn, backToLogin;
     private ProgressBar progressbar;
     private FirebaseAuth mAuth;
+
+    // creating a variable for our
+    // Firebase Database.
+    FirebaseDatabase firebaseDatabase;
+
+    // creating a variable for our Database
+    // Reference for Firebase.
+    DatabaseReference databaseReference;
+
+    // creating a variable for
+    // our object class
+    UserInformation user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,6 +47,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
         // taking FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
+
+        // below line is used to get the
+        // instance of our FIrebase database.
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        // below line is used to get reference for our database.
+        databaseReference = firebaseDatabase.getReference("UserInformation");
 
         // initialising all views through id defined above
         emailTextView = findViewById(R.id.email);
@@ -52,6 +77,47 @@ public class RegistrationActivity extends AppCompatActivity {
                 backToLogin();
             }
         });
+    }
+
+    private void saveUserInformation(String userName) {
+
+        int stringLength = 10;  // specify the length of random string
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        Random rnd = new Random();
+
+        StringBuilder sb = new StringBuilder(stringLength);
+        for (int i = 0; i < stringLength; i++) {
+            sb.append(characters.charAt(rnd.nextInt(characters.length())));
+        }
+        String randomString = sb.toString();
+
+        user = new UserInformation();
+        user.setUserID(randomString);
+        user.setUserName(userName);
+        user.setFirstName("");
+        user.setLastName("");
+        user.setDateJoined(LocalDate.now().toString());
+        user.setDateOfBirth("");
+        String[] input = null;
+        user.setInitalPreference(input);
+        user.setQuizDone(Boolean.FALSE);
+
+        databaseReference.setValue(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Write was successful!
+                        Toast.makeText(RegistrationActivity.this, "Data added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Write failed
+                        Toast.makeText(RegistrationActivity.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void registerNewUser()
@@ -94,6 +160,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                             "Registration successful!",
                                             Toast.LENGTH_LONG)
                                     .show();
+
+                            saveUserInformation(email);
 
                             // hide the progress bar
                             progressbar.setVisibility(View.GONE);

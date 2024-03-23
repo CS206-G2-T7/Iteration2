@@ -9,9 +9,9 @@ public class UserInformation {
 
     private String lastName;
 
-    private Long dateOfBirth;
+    private String dateOfBirth;
 
-    private Long dateJoined;
+    private String dateJoined;
 
     private String[] initalPreference;
 
@@ -27,16 +27,16 @@ public class UserInformation {
     public String getUserName() {return userName;}
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
-    public Long getDateJoined() {return dateJoined;}
-    public Long getDateOfBirth() {return dateOfBirth;}
+    public String getDateJoined() {return dateJoined;}
+    public String getDateOfBirth() {return dateOfBirth;}
     public String[] getInitalPreference() {return initalPreference;}
     public Boolean getQuizDone() {return quizDone;}
     public void setUserID(String userID) {this.userID = userID;}
     public void setUserName(String userName) {this.userName = userName;}
     public void setFirstName(String firstName) {this.firstName = firstName;}
-    private void setLastName(String lastName) {this.lastName = lastName;}
-    private void setDateOfBirth(Long dateOfBirth) {this.dateOfBirth = dateOfBirth;}
-    public void setDateJoined(Long dateJoined) {this.dateJoined = dateJoined;}
+    public void setLastName(String lastName) {this.lastName = lastName;}
+    public void setDateOfBirth(String dateOfBirth) {this.dateOfBirth = dateOfBirth;}
+    public void setDateJoined(String dateJoined) {this.dateJoined = dateJoined;}
     public void setQuizDone(Boolean quizDone) {this.quizDone = quizDone;}
     public void setInitalPreference(String[] initalPreference) {this.initalPreference = initalPreference;}
 }

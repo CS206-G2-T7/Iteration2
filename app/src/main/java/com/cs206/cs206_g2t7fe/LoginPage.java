@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.*;
+import org.jetbrains.annotations.NotNull;
 
 
 public class LoginPage extends AppCompatActivity {
@@ -23,10 +26,26 @@ public class LoginPage extends AppCompatActivity {
     private Button buttonLogin, buttonRegister;
     private FirebaseAuth mAuth;
 
+    // creating a variable for our
+    // Firebase Database.
+    FirebaseDatabase firebaseDatabase;
+
+    // creating a variable for our Database
+    // Reference for Firebase.
+    DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        // below line is used to get the
+        // instance of our Firebase database.
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        // below line is used to get reference for our database.
+        databaseReference = firebaseDatabase.getReference("UserEvents");
+
         mAuth = FirebaseAuth.getInstance();
 
         // Initialize UI elements
@@ -55,6 +74,23 @@ public class LoginPage extends AppCompatActivity {
         });
 
     }
+
+    private void getdata(String email) {
+        databaseReference.child(email).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                    System.out.println("Data Not Found");
+                }
+                else {
+                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                    System.out.println("Data Found");
+                }
+            }
+        });
+    }
+
 
     private void loginUserAccount()
     {
@@ -95,6 +131,8 @@ public class LoginPage extends AppCompatActivity {
                                                     Toast.LENGTH_LONG)
                                             .show();
 
+                                    getdata(email);
+
                                     // if sign-in is successful
                                     // intent to home activity
                                     Intent intent
@@ -119,4 +157,5 @@ public class LoginPage extends AppCompatActivity {
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
+
 }
