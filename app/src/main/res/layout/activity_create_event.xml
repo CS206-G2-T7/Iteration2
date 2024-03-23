@@ -87,22 +87,20 @@
 
     <!--on below line we are creating
         a button for date picker-->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/idBtnPickDate"
-        android:layout_width="285dp"
-        android:layout_height="47dp"
-        android:layout_centerInParent="true"
-        android:layout_margin="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="70dp"
+        android:background="@drawable/button_background"
         android:text="Pick Event Date"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_create_event"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_name"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintTop_toBottomOf="@+id/event_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
