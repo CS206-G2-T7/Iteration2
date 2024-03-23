@@ -63,14 +63,23 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/nav_view"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2" app:layout_constraintHorizontal_bias="0.146"
             app:layout_constraintVertical_bias="0.258"/>
+
     <TextView
-            android:text="Not What You Are Looking For ?"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView7"
-            android:textColor="#070707" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/generateAgain"
-            app:layout_constraintHorizontal_bias="0.075" android:layout_marginBottom="48dp"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2" app:layout_constraintVertical_bias="1.0"/>
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Not What You Are Looking For ?"
+        android:textColor="@color/dark_green"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/generateAgain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ImageView
             android:layout_width="28dp"
             android:layout_height="31dp" app:srcCompat="@drawable/sparkling" android:id="@+id/imageView10"
@@ -79,14 +88,20 @@
             app:layout_constraintTop_toTopOf="@+id/generateAgain"
             app:layout_constraintBottom_toBottomOf="@+id/generateAgain" app:layout_constraintHorizontal_bias="0.102"
             app:layout_constraintVertical_bias="0.513"/>
+
     <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/completeButton"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generateAgain"
-            app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintHorizontal_bias="0.049"
-            app:layout_constraintVertical_bias="0.099"/>
+        android:id="@+id/completeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generateAgain"
+        app:layout_constraintVertical_bias="0.099" />
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"

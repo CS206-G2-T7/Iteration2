@@ -25,8 +25,8 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/mobile_navigation2"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="92dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="56dp" />
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
@@ -44,19 +44,19 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="356dp"
+        android:layout_height="63dp"
         android:text="What other places would you like to add to your event?"
         android:textAlignment="center"
         android:textColor="@color/dark_green"
-        android:textSize="14sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_add_new"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <ImageButton
         android:id="@+id/addByLocation"
@@ -68,29 +68,35 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.068"
+        app:layout_constraintVertical_bias="0.088"
         app:srcCompat="@drawable/group_163addbylocation" />
 
     <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/group_150searchforplace"
-            android:id="@+id/searchForPlace"
-            android:backgroundTint="#BAFFFFFF" android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/addByInterests" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.491" app:layout_constraintVertical_bias="0.0"/>
+        android:id="@+id/searchForPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#BAFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addByInterests"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/group_150searchforplace" />
 
     <ImageButton
         android:id="@+id/addByInterests"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="@color/back_button_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addByLocation"
         app:srcCompat="@drawable/group_149addbyinterests" />
+
     <ImageView
             android:layout_width="39dp"
             android:layout_height="37dp" app:srcCompat="@drawable/search" android:id="@+id/imageView3"

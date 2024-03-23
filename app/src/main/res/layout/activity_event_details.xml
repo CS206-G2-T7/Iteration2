@@ -83,14 +83,20 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintTop_toBottomOf="@+id/textView16"
             app:layout_constraintBottom_toTopOf="@+id/textView20" app:layout_constraintVertical_bias="0.169"/>
+
     <TextView
-            android:text="Cafe A"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView17"
-            app:layout_constraintStart_toStartOf="@+id/cafeAImageButton"
-            app:layout_constraintEnd_toEndOf="@+id/cafeAImageButton"
-            app:layout_constraintBottom_toBottomOf="@+id/cafeAImageButton"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" app:layout_constraintVertical_bias="0.566"/>
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cafe A"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cafeAImageButton"
+        app:layout_constraintEnd_toEndOf="@+id/cafeAImageButton"
+        app:layout_constraintStart_toStartOf="@+id/cafeAImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.566" />
 
     <TextView
         android:id="@+id/addMoreTextButton"

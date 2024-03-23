@@ -41,14 +41,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/mobile_navigation5"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.125"/>
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView8"
-            android:text="Yippee ! Your booking has been confirmed" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_surprise_me_confirmation"
-            app:layout_constraintBottom_toTopOf="@+id/doneButtonSurpriseMe" app:layout_constraintVertical_bias="0.843"
-            android:textStyle="bold" android:textSize="20sp"/>
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yippee ! Your booking has been confirmed"
+        android:textColor="@color/dark_green"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/doneButtonSurpriseMe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_surprise_me_confirmation"
+        app:layout_constraintVertical_bias="0.843" />
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/tick" android:id="@+id/imageView11"
@@ -65,12 +71,18 @@
             app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_surprise_me_confirmation"
             app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintVertical_bias="0.499"/>
+
     <TextView
-            android:text="Done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView9"
-            app:layout_constraintStart_toStartOf="@+id/doneButtonSurpriseMe"
-            app:layout_constraintEnd_toEndOf="@+id/doneButtonSurpriseMe" app:layout_constraintTop_toTopOf="@+id/doneButtonSurpriseMe"
-            app:layout_constraintBottom_toBottomOf="@+id/doneButtonSurpriseMe"/>
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/doneButtonSurpriseMe"
+        app:layout_constraintEnd_toEndOf="@+id/doneButtonSurpriseMe"
+        app:layout_constraintStart_toStartOf="@+id/doneButtonSurpriseMe"
+        app:layout_constraintTop_toTopOf="@+id/doneButtonSurpriseMe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
