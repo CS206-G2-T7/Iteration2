@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.564" />
 
-    <TextView
+    <EditText
         android:id="@+id/event_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -52,37 +52,49 @@
         app:layout_constraintVertical_bias="0.014" />
 
 
-    <TextView
-        android:id="@+id/event_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/text_background"
-        android:hint="Event Date"
-        android:padding="10dp"
-        android:textColor="@color/text_grey"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_name"
-        app:layout_constraintVertical_bias="0.0" />
-
+    <!--on below line we are creating a text view-->
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_create_event"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="70dp"
-        android:background="@drawable/button_background"
-        android:text="Next"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_date"
-        app:layout_constraintVertical_bias="0.151" />
+            android:id="@+id/btn_create_event"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:background="@drawable/button_background"
+            android:text="Next"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginBottom="120dp"/>
+    <TextView
+            android:id="@+id/idTVSelectedDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/idBtnPickDate"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" android:visibility="visible" tools:layout_editor_absoluteX="20dp"
+            android:text="Date"/>
+
+    <!--on below line we are creating
+        a button for date picker-->
+    <Button
+            android:id="@+id/idBtnPickDate"
+            android:layout_width="269dp"
+            android:layout_height="37dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:text="Pick Event Date"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/event_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.535"
+            app:layout_constraintBottom_toTopOf="@+id/btn_create_event" app:layout_constraintVertical_bias="0.483"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

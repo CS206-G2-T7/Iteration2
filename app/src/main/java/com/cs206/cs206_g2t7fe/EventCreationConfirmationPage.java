@@ -1,13 +1,12 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,27 +14,27 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.cs206.cs206_g2t7fe.databinding.ActivityEventDetailsBinding;
+import com.cs206.cs206_g2t7fe.databinding.ActivityEventCreationConfirmationPageBinding;
 
-public class EventDetails extends AppCompatActivity {
+public class EventCreationConfirmationPage extends AppCompatActivity {
 
-    ImageButton backButton;
+    ImageButton doneButton;
 
-    private ActivityEventDetailsBinding binding;
+    private ActivityEventCreationConfirmationPageBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityEventDetailsBinding.inflate(getLayoutInflater());
+        binding = ActivityEventCreationConfirmationPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().hide();
 
-        backButton = (ImageButton) findViewById(R.id.backButtonEventDetails);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        doneButton = (ImageButton) findViewById(R.id.doneButton);
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backToMainPage();
@@ -48,19 +47,18 @@ public class EventDetails extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_event_details);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_event_creation_confirmation_page);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_event_details);
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_event_creation_confirmation_page);
         if (navHostFragment != null) {
             fragmentManager.beginTransaction().hide(navHostFragment).commit();
             // Use this to show it again
             // fragmentManager.beginTransaction().show(navHostFragment).commit();
         }
     }
-
 
     public void backToMainPage(){
         Intent intent = new Intent(this, LandingPage.class);

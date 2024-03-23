@@ -9,8 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_green">#9EEBBD</color>
     <color name="dark_green">#5CC680</color>
-
-    <!-- text -->
+    <color name="teal">#008FA0</color>
     <color name="text_green">#00A04A</color>
     <color name="text_grey">#AFAFAF</color>
 

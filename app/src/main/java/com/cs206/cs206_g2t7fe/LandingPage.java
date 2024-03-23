@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -18,7 +19,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
-    AppCompatButton testButton; // all instances of this is a testing button
+    AppCompatButton newEventButton, surpriseMeButton;
 
     private ActivityLandingPageBinding binding;
 
@@ -27,6 +28,7 @@ public class LandingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
         button = (ImageButton) findViewById(R.id.imageButton1);
@@ -37,15 +39,27 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        // test button
-        testButton = (AppCompatButton) findViewById(R.id.button5);
-        testButton.setOnClickListener(new View.OnClickListener() {
+
+        newEventButton = (AppCompatButton) findViewById(R.id.button6);
+        newEventButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) { openQuizPage(); }
+            public void onClick(View v) {
+                createNewEvent();
+            }
         });
+
+        surpriseMeButton = (AppCompatButton) findViewById(R.id.surpriseMe);
+        surpriseMeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                openSupriseMePage();
+            }
+        });
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -56,6 +70,14 @@ public class LandingPage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_landing_page);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_landing_page);
+        if (navHostFragment != null) {
+            fragmentManager.beginTransaction().hide(navHostFragment).commit();
+            // Use this to show it again
+            // fragmentManager.beginTransaction().show(navHostFragment).commit();
+        }
     }
 
     public void openEventDetails(){
@@ -69,4 +91,13 @@ public class LandingPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void createNewEvent() {
+        Intent intent = new Intent(this, CreateEvent.class);
+        startActivity(intent);
+    }
+
+    public void openSupriseMePage(){
+        Intent intent = new Intent(this, SurpriseMePage.class);
+        startActivity(intent);
+    }
 }
