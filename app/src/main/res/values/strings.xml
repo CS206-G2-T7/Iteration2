@@ -3,7 +3,11 @@
     <string name="title_activity_main_page">MainPage</string>
 
     <!-- actual strings we use -->
-    <string name="quiz_intro"><b><font size="25">Lets get you started!</font></b></string>
+    <string name="quiz_intro">
+        <b>
+            <font size="25">Lets get you started!</font>
+        </b>
+    </string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
