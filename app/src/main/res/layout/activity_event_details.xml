@@ -45,22 +45,37 @@
             android:id="@+id/cardView2" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintVertical_bias="0.081"/>
+
     <TextView
-            android:text="Cafe Hopping With The Boys"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/EventTitle"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2"
-            app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintVertical_bias="0.064"
-            android:textStyle="bold" android:typeface="sans" android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+        android:id="@+id/EventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cafe Hopping With The Boys"
+        android:textColor="@color/dark_green"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.064" />
+
     <TextView
-            android:text="Places You Are Visiting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView16"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EventTitle" android:layout_marginTop="16dp"
-            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintBottom_toTopOf="@+id/textView20"
-            app:layout_constraintVertical_bias="0.0"/>
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Places You Are Visiting"
+        android:textColor="@color/dark_green"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EventTitle"
+        app:layout_constraintVertical_bias="0.0" />
     <ImageButton
             android:layout_width="342dp"
             android:layout_height="59dp" app:srcCompat="@drawable/done" android:id="@+id/cafeAImageButton"
@@ -76,36 +91,61 @@
             app:layout_constraintEnd_toEndOf="@+id/cafeAImageButton"
             app:layout_constraintBottom_toBottomOf="@+id/cafeAImageButton"
             app:layout_constraintTop_toBottomOf="@+id/textView16" app:layout_constraintVertical_bias="0.566"/>
+
     <TextView
-            android:text="Add More Places"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/addMoreTextButton"
-            android:clickable="true" app:layout_constraintEnd_toStartOf="@+id/gettingThereButton"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toTopOf="@+id/textView20"
-            app:layout_constraintHorizontal_bias="0.376" android:layout_marginBottom="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/cafeAImageButton"/>
+        android:id="@+id/addMoreTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:text="Add More Places"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintEnd_toStartOf="@+id/gettingThereButton"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cafeAImageButton" />
+
     <TextView
-            android:text="Getting There"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/gettingThereButton"
-            android:clickable="true" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView20"
-            app:layout_constraintTop_toBottomOf="@+id/cafeAImageButton" app:layout_constraintVertical_bias="0.317"/>
+        android:id="@+id/gettingThereButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:clickable="true"
+        android:text="Getting There"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cafeAImageButton"
+        app:layout_constraintVertical_bias="0.317" />
+
     <TextView
-            android:text="Who Are You Going With ?"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView20"
-            android:layout_marginBottom="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/invitePeopleButton" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.497"/>
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Who Are You Going With ?"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/invitePeopleButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
-            android:text="Invite More People"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/invitePeopleButton"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.479" app:layout_constraintVertical_bias="0.685"
-            android:clickable="true"/>
+        android:id="@+id/invitePeopleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Invite More People"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.685" />
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"

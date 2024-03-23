@@ -38,13 +38,18 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintVertical_bias="0.122"/>
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView4"
-            android:text="Yay! Your Event Has Been Created"
-            android:textFontWeight="50" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintBottom_toTopOf="@+id/doneButton"/>
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yay! Your Event Has Been Created"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/doneButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:srcCompat="@drawable/done" android:id="@+id/doneButton"
@@ -52,15 +57,21 @@
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/nav_view"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintVertical_bias="0.414"/>
+
     <TextView
-            android:text="Done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView6"
-            android:textStyle="bold" android:textColor="#D5FFFFFF"
-            app:layout_constraintTop_toTopOf="@+id/doneButton"
-            app:layout_constraintBottom_toBottomOf="@+id/doneButton" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/doneButton" app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintVertical_bias="0.545"/>
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:textColor="#D5FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/doneButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/doneButton"
+        app:layout_constraintTop_toTopOf="@+id/doneButton"
+        app:layout_constraintVertical_bias="0.545" />
 
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"

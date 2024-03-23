@@ -15,4 +15,5 @@
     <color name="text_grey">#AFAFAF</color>
     <color name="button_light_green">#D7ECE1</color>
     <color name="button_dark_green">#31B16C</color>
+    <color name="back_button_background">#C1FFFFFF</color>
 </resources>
