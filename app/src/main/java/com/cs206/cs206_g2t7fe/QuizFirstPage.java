@@ -18,11 +18,15 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.cs206.cs206_g2t7fe.databinding.ActivityQuizFirstPageBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class QuizFirstPage extends AppCompatActivity {
 
 //    private AppBarConfiguration appBarConfiguration;
 //    private ActivityQuizFirstPageBinding binding;
 
+    ArrayList<String> selectedID = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class QuizFirstPage extends AppCompatActivity {
     // sets "next" button to open next quiz page
     public void openNextQuizPage() {
         Intent intent = new Intent(this, QuizSecondPage.class);
+        intent.putExtra("q1Ans", selectedID);
         startActivity(intent);
     }
 
@@ -86,8 +91,12 @@ public class QuizFirstPage extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 b.setBackgroundResource(R.drawable.button_background);
 
+                selectedID.add(getResources().getResourceName(b.getId()));
+
+                System.out.println(selectedID);
 
                 // when any options buttons is clicked, the "next" button will be enabled
                 AppCompatButton next = (AppCompatButton) findViewById(R.id.quiz_next);

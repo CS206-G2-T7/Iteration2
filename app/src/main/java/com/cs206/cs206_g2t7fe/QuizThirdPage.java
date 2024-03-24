@@ -18,15 +18,26 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.cs206.cs206_g2t7fe.databinding.ActivityQuizFirstPageBinding;
 
+import java.util.ArrayList;
+
 public class QuizThirdPage extends AppCompatActivity {
 
     //    private AppBarConfiguration appBarConfiguration;
     //    private ActivityQuizFirstPageBinding binding;
 
+    ArrayList<String>currentArray = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_third_page);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            ArrayList<String> previousArray = extras.getStringArrayList("q2Ans");
+            //The key argument here must match that used in the other activity
+            currentArray = previousArray;
+        }
 
         // determinate progress
         ProgressBar bar = findViewById(R.id.progressBar);
@@ -64,6 +75,8 @@ public class QuizThirdPage extends AppCompatActivity {
         // set default state
         next.setEnabled(false);
 
+        System.out.println(currentArray);
+
         // navigates to next quiz page
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +95,7 @@ public class QuizThirdPage extends AppCompatActivity {
             public void onClick(View v) {
                 b.setBackgroundResource(R.drawable.button_background);
 
+                currentArray.add(getResources().getResourceName(b.getId()));
 
                 // when any options buttons is clicked, the "next" button will be enabled
                 AppCompatButton next = (AppCompatButton) findViewById(R.id.quiz_lets_go);
