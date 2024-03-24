@@ -201,7 +201,7 @@ public class CreateEvent extends AppCompatActivity {
 
         System.out.println(userEvents.toString());
 
-        databaseReference.setValue(userEvents)
+        databaseReference.child(randomString).setValue(userEvents)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
