@@ -2,6 +2,7 @@ package com.cs206.cs206_g2t7fe;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import java.util.Random;
@@ -83,6 +84,11 @@ public class CreateEvent extends AppCompatActivity {
         // initializing our object
         // class variable.
         userEvents = new UserEvents();
+
+        // Storing data into SharedPreferences
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+        String userID= sharedPreferences.getString("userID", null);
 
         // on below line we are initializing our variables.
         pickDateBtn = findViewById(R.id.idBtnPickDate);
@@ -169,7 +175,7 @@ public class CreateEvent extends AppCompatActivity {
                     // else call the method to add
                     // data to our database.
                     System.out.println("This is the date: " + epochMillis);
-                    addDataToFirebase("junjieoi", event_name[0], epochMillis);
+                    addDataToFirebase("junjieoi", event_name[0], epochMillis, userID);
                     addEventLocation();
                 }
             }
@@ -187,7 +193,7 @@ public class CreateEvent extends AppCompatActivity {
         return sb.toString();
     }
 
-    private void addDataToFirebase(String username, String eventName, Long dateIn) {
+    private void addDataToFirebase(String username, String eventName, Long dateIn, String userID) {
 
         String randomString = generateRandomString(10); // Generates a random string of 10 characters
         System.out.println(randomString);
@@ -195,7 +201,7 @@ public class CreateEvent extends AppCompatActivity {
         userEvents.setEventID(randomString);
         userEvents.setEventName(eventName);
         userEvents.setEventDate(dateIn);
-        userEvents.setUserID(username);
+        userEvents.setUserID(userID);
 
         System.out.println(userEvents.getEventID());
 
