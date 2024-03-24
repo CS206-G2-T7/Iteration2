@@ -1,5 +1,10 @@
 package com.cs206.cs206_g2t7fe;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserInformation {
     private String userID;
 
@@ -39,4 +44,18 @@ public class UserInformation {
     public void setDateJoined(String dateJoined) {this.dateJoined = dateJoined;}
     public void setQuizDone(Boolean quizDone) {this.quizDone = quizDone;}
     public void setInitalPreference(String[] initalPreference) {this.initalPreference = initalPreference;}
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("userID", userID);
+        result.put("userName", userName);
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+        result.put("dateOfBirth", dateOfBirth);
+        result.put("dateJoined", dateJoined);
+        result.put("initialPreference", initalPreference);
+        result.put("quizDone", quizDone);
+        return result;
+    }
 }

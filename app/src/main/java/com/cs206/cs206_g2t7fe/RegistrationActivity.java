@@ -79,7 +79,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void saveUserInformation(String userName) {
+    private String saveUserInformation(String userName) {
 
         int stringLength = 10;  // specify the length of random string
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -103,7 +103,7 @@ public class RegistrationActivity extends AppCompatActivity {
         user.setInitalPreference(input);
         user.setQuizDone(Boolean.FALSE);
 
-        databaseReference.setValue(user)
+        databaseReference.child(randomString).setValue(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -118,6 +118,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         Toast.makeText(RegistrationActivity.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
                     }
                 });
+        return randomString;
     }
 
     private void registerNewUser()
@@ -161,7 +162,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                             Toast.LENGTH_LONG)
                                     .show();
 
-                            saveUserInformation(email);
+                            String userID = saveUserInformation(email);
 
                             // hide the progress bar
                             progressbar.setVisibility(View.GONE);
@@ -170,6 +171,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             Intent intent
                                     = new Intent(RegistrationActivity.this,
                                     UserOnboardingPage.class);
+                            intent.putExtra("userID", userID);
                             startActivity(intent);
                         }
                         else {
