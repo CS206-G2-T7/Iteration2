@@ -2,6 +2,8 @@ package com.cs206.cs206_g2t7fe;
 
 import com.google.firebase.database.Exclude;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +20,7 @@ public class UserInformation {
 
     private String dateJoined;
 
-    private String[] initalPreference;
+    private ArrayList<String> initalPreference;
 
     private Boolean quizDone;
 
@@ -34,7 +36,7 @@ public class UserInformation {
     public String getLastName() {return lastName;}
     public String getDateJoined() {return dateJoined;}
     public String getDateOfBirth() {return dateOfBirth;}
-    public String[] getInitalPreference() {return initalPreference;}
+    public ArrayList<String> getInitalPreference() {return initalPreference;}
     public Boolean getQuizDone() {return quizDone;}
     public void setUserID(String userID) {this.userID = userID;}
     public void setUserName(String userName) {this.userName = userName;}
@@ -43,7 +45,7 @@ public class UserInformation {
     public void setDateOfBirth(String dateOfBirth) {this.dateOfBirth = dateOfBirth;}
     public void setDateJoined(String dateJoined) {this.dateJoined = dateJoined;}
     public void setQuizDone(Boolean quizDone) {this.quizDone = quizDone;}
-    public void setInitalPreference(String[] initalPreference) {this.initalPreference = initalPreference;}
+    public void setInitalPreference(ArrayList<String> initalPreference) {this.initalPreference = initalPreference;}
 
     @Exclude
     public Map<String, Object> toMap() {

@@ -99,8 +99,7 @@ public class RegistrationActivity extends AppCompatActivity {
         user.setLastName("");
         user.setDateJoined(LocalDate.now().toString());
         user.setDateOfBirth("");
-        String[] input = null;
-        user.setInitalPreference(input);
+        user.setInitalPreference(null);
         user.setQuizDone(Boolean.FALSE);
 
         databaseReference.child(randomString).setValue(user)
