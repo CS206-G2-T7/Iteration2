@@ -17,7 +17,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="540dp"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_venue_recommendations"
@@ -40,85 +51,55 @@
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintVertical_bias="0.0"/>
+
+    <!--    <ScrollView-->
+<!--        android:layout_width="351dp"-->
+<!--        android:layout_height="206dp"-->
+<!--        android:id="@+id/scrollView2" app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginTop="64dp" app:layout_constraintHorizontal_bias="0.266">-->
+<!--        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"/>-->
+<!--    </ScrollView>-->
+
     <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="579dp"
         android:text="Top places we think you might like..."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/textView5"
-        android:textColor="#121111" android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/backbutton" app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="9dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2" app:layout_constraintHorizontal_bias="0.086"
-        app:layout_constraintVertical_bias="1.0"/>
-    <ScrollView
-        android:layout_width="351dp"
-        android:layout_height="206dp"
-        android:id="@+id/scrollView2" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="64dp" app:layout_constraintHorizontal_bias="0.266">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-    </ScrollView>
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" app:srcCompat="@drawable/generateagain" android:id="@+id/generateAgain"
-        android:backgroundTint="#FFFFFF" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintVertical_bias="0.258"/>
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_venue_recommendations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
         android:text="Not What You Are Looking For ?"
         android:textColor="@color/dark_green"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/generateAgain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="@+id/nav_host_fragment_activity_venue_recommendations"
+        app:layout_constraintHorizontal_bias="0.316"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="31dp" app:srcCompat="@drawable/sparkling" android:id="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/generateAgain"
-        app:layout_constraintEnd_toEndOf="@+id/generateAgain"
-        app:layout_constraintTop_toTopOf="@+id/generateAgain"
-        app:layout_constraintBottom_toBottomOf="@+id/generateAgain" app:layout_constraintHorizontal_bias="0.102"
-        app:layout_constraintVertical_bias="0.513"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/completeButton"
-        android:layout_width="159dp"
-        android:layout_height="40dp"
-        android:background="@drawable/button_background"
-        android:text="Add to Event"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generateAgain"
+        app:layout_constraintTop_toBottomOf="@+id/teoheng"
         app:layout_constraintVertical_bias="0.096" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/nav_host_fragment_activity_add_new"/>
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="28dp"
+        android:layout_height="31dp"
+        app:srcCompat="@drawable/sparkling"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="602dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view_activity_venue_recommendations"
@@ -132,5 +113,61 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_nav_menu" />
+
+    <ImageButton
+        android:id="@+id/kimbbq"
+        android:layout_width="361dp"
+        android:layout_height="164dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/filming_kimbbq" />
+
+    <ImageButton
+        android:id="@+id/teoheng"
+        android:layout_width="361dp"
+        android:layout_height="167dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kimbbq"
+        app:layout_constraintVertical_bias="0.034"
+        app:srcCompat="@drawable/filming_teoheng" />
+
+    <ImageButton
+        android:id="@+id/generateAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teoheng"
+        app:layout_constraintVertical_bias="0.277"
+        app:srcCompat="@drawable/filming_generateagain" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/completeButton"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/button_unclicked"
+        android:text="Add to Event"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_view_activity_venue_recommendations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generateAgain"
+        app:layout_constraintVertical_bias="0.571" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

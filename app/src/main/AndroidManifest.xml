@@ -1,88 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-            android:allowBackup="true"
-            android:dataExtractionRules="@xml/data_extraction_rules"
-            android:fullBackupContent="@xml/backup_rules"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            tools:remove="android:appComponentFactory"
-            tools:targetApi="31">
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:remove="android:appComponentFactory"
+        tools:targetApi="31" >
         <activity
-                android:name=".UserOnboardingPage"
-                android:exported="false"
-                android:label="@string/title_activity_user_onboarding_page"/>
+            android:name=".VenueAdditionConfirmation"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-                android:name=".RegistrationActivity"
-                android:exported="false"/>
+            android:name=".UserOnboardingPage"
+            android:exported="false"
+            android:label="@string/title_activity_user_onboarding_page" />
         <activity
-                android:name=".LoginPage"
-                android:exported="true"
-                android:label="@string/title_activity_main_page"
-                android:theme="@style/Theme.CS206G2T7FE">
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="true"
+            android:label="@string/title_activity_main_page"
+            android:theme="@style/Theme.CS206G2T7FE" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-                android:name=".EventDetails"
-                android:exported="false"
-                android:label="@string/title_activity_event_details"/>
+            android:name=".EventDetails"
+            android:exported="false"
+            android:label="@string/title_activity_event_details" />
         <activity
-                android:name=".SurpriseMePage"
-                android:exported="false"
-                android:label="@string/title_activity_surprise_me_page"/>
+            android:name=".SurpriseMePage"
+            android:exported="false"
+            android:label="@string/title_activity_surprise_me_page" />
         <activity
-                android:name=".SurpriseMeConfirmation"
-                android:exported="false"
-                android:label="@string/title_activity_surprise_me_confirmation"/>
+            android:name=".SurpriseMeConfirmation"
+            android:exported="false"
+            android:label="@string/title_activity_surprise_me_confirmation" />
         <activity
-                android:name=".QuizFirstPage"
-                android:exported="false"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".QuizFirstPage"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-                android:name=".QuizSecondPage"
-                android:exported="false"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".QuizSecondPage"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-                android:name=".QuizThirdPage"
-                android:exported="false"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:name=".QuizThirdPage"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-                android:name=".VenueRecommendations"
-                android:exported="false"
-                android:label="@string/title_activity_venue_recommendations"/>
+            android:name=".VenueRecommendations"
+            android:exported="false"
+            android:label="@string/title_activity_venue_recommendations" />
         <activity
-                android:name=".EventCreationConfirmationPage"
-                android:exported="false"
-                android:label="@string/title_activity_event_creation_confirmation_page"/>
+            android:name=".EventCreationConfirmationPage"
+            android:exported="false"
+            android:label="@string/title_activity_event_creation_confirmation_page" />
         <activity
-                android:name=".AddNewActivity"
-                android:exported="false"
-                android:label="@string/title_activity_add_new"/>
+            android:name=".AddNewActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_new" />
         <activity
-                android:name=".CreateEvent"
-                android:exported="false"/>
+            android:name=".CreateEvent"
+            android:exported="false" />
         <activity
-                android:name=".LandingPage"
-                android:exported="true"
-                android:label="@string/title_activity_main_page"
-                android:theme="@style/Theme.CS206G2T7FE"/>
+            android:name=".LandingPage"
+            android:exported="true"
+            android:label="@string/title_activity_main_page"
+            android:theme="@style/Theme.CS206G2T7FE" />
         <activity
-                android:name=".MainActivities"
-                android:exported="false"
-                android:label="@string/title_activity_main_activities"
-                android:theme="@style/Theme.CS206G2T7FE"/>
+            android:name=".MainActivities"
+            android:exported="false"
+            android:label="@string/title_activity_main_activities"
+            android:theme="@style/Theme.CS206G2T7FE" />
     </application>
 
 </manifest>

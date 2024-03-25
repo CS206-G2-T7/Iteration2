@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import com.cs206.cs206_g2t7fe.ui.CustomLoading;
@@ -22,7 +20,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityVenueRecommendationsBinding;
 public class VenueRecommendations extends AppCompatActivity {
 
     Button confirmButton;
-    ImageButton generateButton;
+    ImageButton generateButton, teoheng, kimbbq;
 
     private ActivityVenueRecommendationsBinding binding;
 
@@ -39,12 +37,14 @@ public class VenueRecommendations extends AppCompatActivity {
 
         confirmButton = (Button) findViewById(R.id.completeButton);
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirmation();
-            }
-        });
+        setUpButtons(confirmButton);
+
+//        confirmButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                confirmation();
+//            }
+//        });
 
         generateButton = (ImageButton) findViewById(R.id.generateAgain);
         final CustomLoading customLoading = new CustomLoading(VenueRecommendations.this);
@@ -73,6 +73,51 @@ public class VenueRecommendations extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_venue_recommendations);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    public void setUpButtons(Button confirmButton) {
+        // retrieve option buttons
+        ImageButton option1 = findViewById(R.id.kimbbq);
+        ImageButton option2 = findViewById(R.id.teoheng);
+
+        // change colours of options when clicked
+        option1.setOnClickListener(colourChangeListener(option1));
+        option2.setOnClickListener(colourChangeListener(option2));
+
+
+        // set up "next" button
+        setUpConfirmationButton(confirmButton);
+    }
+
+    public View.OnClickListener colourChangeListener (ImageButton b) {
+        // return this variable
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                b.setBackgroundResource(R.drawable.button_background);
+
+                // when any options buttons is clicked, the "next" button will be enabled
+                Button confirmButton = (Button) findViewById(R.id.completeButton);
+                confirmButton.setEnabled(true);
+                confirmButton.setBackgroundResource(R.drawable.button_background);
+            }
+        };
+    }
+
+    public void setUpConfirmationButton(Button confirmButton) {
+
+        // set default state
+        confirmButton.setEnabled(false);
+
+        // navigates to next quiz page
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // open the next quiz page
+                confirmation();
+            }
+        });
     }
 
     public void confirmation(){
