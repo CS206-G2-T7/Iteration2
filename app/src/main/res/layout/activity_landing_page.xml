@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
-            android:text="Search"
+            android:hint="Search"
             app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.124"
