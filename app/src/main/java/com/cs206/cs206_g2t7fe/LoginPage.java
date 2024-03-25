@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+
+import java.util.*;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +21,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 
 public class LoginPage extends AppCompatActivity {
@@ -79,20 +84,34 @@ public class LoginPage extends AppCompatActivity {
         void onCallback(Integer value);
     }
 
-    private void getdata(String email, MyCallback myCallback) {
+    private void getdata(String email, MyCallback myCallback){
 
-        Query query = databaseReference.orderByChild("userName").equalTo(email);
-        query.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    System.out.println("Data Not Found");
-                    myCallback.onCallback(0);
-                } else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                    System.out.println("Data Found");
-                    myCallback.onCallback(0);
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                int found = 0;
+                Map<String, Object> postValues = new HashMap<String,Object>();
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+
+                    postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+
+                    for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                        System.out.println(grandChildSnapshot.getValue());
+                        if (grandChildSnapshot.getValue().equals(email)) {
+                            myCallback.onCallback(0);
+                            found = 1;
+                            break;
+                        }
+                    }
+                    if (found == 1){
+                        break;
+                    }
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError databaseError) {
+                System.out.println("Error");
             }
         });
     }
@@ -149,7 +168,7 @@ public class LoginPage extends AppCompatActivity {
                                                 startActivity(intent);
                                             }else{
                                                 Toast.makeText(getApplicationContext(),
-                                                                "Login failed!!",
+                                                                "Login failed at step 2!!",
                                                                 Toast.LENGTH_LONG)
                                                         .show();
                                             }

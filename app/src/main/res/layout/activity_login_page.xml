@@ -36,13 +36,12 @@
             android:layout_width="358dp"
             android:layout_height="55dp"
             android:inputType="textEmailAddress"
-            android:text="Email"
             android:ems="10"
             android:id="@+id/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.415"
-            app:layout_constraintVertical_bias="0.869"/>
+            app:layout_constraintVertical_bias="0.869" android:hint="Email"/>
     <Button
             android:text="Don't Have An Account ? Sign-Up Here"
             android:layout_width="wrap_content"
