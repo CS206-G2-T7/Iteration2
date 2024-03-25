@@ -1,10 +1,12 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -16,12 +18,66 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
+import com.google.firebase.database.*;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
     AppCompatButton newEventButton, surpriseMeButton;
 
     private ActivityLandingPageBinding binding;
+
+    String userEmail = "";
+
+    // creating a variable for our
+    // Firebase Database.
+    FirebaseDatabase firebaseDatabase;
+
+    // creating a variable for our Database
+    // Reference for Firebase.
+    DatabaseReference databaseReference, databaseReferenceEvent;
+
+    interface MyCallback {
+        String onCallback(String value);
+    }
+
+
+    private void getdata(String email, MyCallback myCallback){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                int found = 0;
+                String userID = "";
+                Map<String, Object> postValues = new HashMap<String,Object>();
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+
+                    postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+
+                    userID = childSnapshot.getKey();
+
+                    for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                        if (grandChildSnapshot.getValue().equals(email)) {
+                            found = 1;
+                            break;
+                        }
+                    }
+                    if (found == 1){
+                        break;
+                    }
+                }
+                if (found == 1) {
+                    myCallback.onCallback(userID);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError databaseError) {
+                System.out.println("Error");
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +86,15 @@ public class LandingPage extends AppCompatActivity {
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        // below line is used to get the
+        // instance of our Firebase database.
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        // below line is used to get reference for our database.
+        databaseReference = firebaseDatabase.getReference("UserInformation");
+
+        databaseReferenceEvent = firebaseDatabase.getReference("UserEvents");
 
         button = (ImageButton) findViewById(R.id.imageButton1);
         button.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +126,10 @@ public class LandingPage extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().hide();
 
+        if (getIntent().hasExtra("Email")) {
+            userEmail = getIntent().getStringExtra("Email");  // return the data associated with the "KEY"
+        }
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -78,6 +147,24 @@ public class LandingPage extends AppCompatActivity {
             // Use this to show it again
             // fragmentManager.beginTransaction().show(navHostFragment).commit();
         }
+
+        // Storing data into SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+        // Creating an Editor object to edit(write to the file)
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+        getdata(userEmail, new MyCallback() {
+            @Override
+            public String onCallback(String value) {
+                myEdit.putString("userID", value);
+                return "";
+            }
+        });
+        myEdit.commit();
+
+        String userID= sharedPreferences.getString("userID", null);
+        System.out.println("This is the userID: " + userID);
+
     }
 
     public void openEventDetails(){

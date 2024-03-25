@@ -86,8 +86,8 @@ public class LoginPage extends AppCompatActivity {
 
     private void getdata(String email, MyCallback myCallback){
 
+        final String[] returnID = {""};
         databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
                 int found = 0;
                 Map<String, Object> postValues = new HashMap<String,Object>();
@@ -96,7 +96,6 @@ public class LoginPage extends AppCompatActivity {
                     postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
 
                     for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                        System.out.println(grandChildSnapshot.getValue());
                         if (grandChildSnapshot.getValue().equals(email)) {
                             myCallback.onCallback(0);
                             found = 1;
@@ -165,6 +164,7 @@ public class LoginPage extends AppCompatActivity {
                                                 Intent intent
                                                         = new Intent(LoginPage.this,
                                                         LandingPage.class);
+                                                intent.putExtra("Email", email);
                                                 startActivity(intent);
                                             }else{
                                                 Toast.makeText(getApplicationContext(),
