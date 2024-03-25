@@ -1,6 +1,7 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.widget.Toast;
@@ -42,6 +43,8 @@ public class QuizThirdPage extends AppCompatActivity {
     // Reference for Firebase.
     DatabaseReference databaseReference;
 
+    String userID = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,11 @@ public class QuizThirdPage extends AppCompatActivity {
 
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("UserInformation");
+
+        // Storing data into SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+        userID= sharedPreferences.getString("userID", null);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -68,6 +76,8 @@ public class QuizThirdPage extends AppCompatActivity {
         // set up options buttons and next button
         setUpButtons(next);
     }
+
+
 
     public void handlePreferences(){
         for (int i=0; i<currentArray.size()-1; i++){
@@ -95,6 +105,7 @@ public class QuizThirdPage extends AppCompatActivity {
                 }
             }
         }
+        updateUserPreference(userID);
     }
 
     public void updateUserPreference(String userID){
@@ -106,6 +117,7 @@ public class QuizThirdPage extends AppCompatActivity {
                     postValues.put(snapshot.getKey(),snapshot.getValue());
                 }
                 postValues.put("initialPreference", outputArray);
+                postValues.put("quizDone",Boolean.TRUE);
                 databaseReference.child(userID).updateChildren(postValues);
                 Toast.makeText(QuizThirdPage.this, "Data Added", Toast.LENGTH_SHORT).show();
             }
@@ -120,6 +132,7 @@ public class QuizThirdPage extends AppCompatActivity {
     public void openLandingPage() {
         Intent intent = new Intent(this, LandingPage.class);
         System.out.println(currentArray);
+        handlePreferences();
         startActivity(intent);
     }
 
