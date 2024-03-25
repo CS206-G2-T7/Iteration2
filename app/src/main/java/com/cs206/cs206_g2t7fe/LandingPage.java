@@ -23,6 +23,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -125,6 +126,21 @@ public class LandingPage extends AppCompatActivity {
         });
     }
 
+    private String getTimeOfDay(){
+        LocalTime currentTime = LocalTime.now();
+
+        if(currentTime.isBefore(LocalTime.NOON)) {
+            System.out.println("Good Morning");
+            return "Good Morning ";
+        } else if(currentTime.isBefore(LocalTime.of(19, 0))) { // 5 PM comparable to civil afternoon in western culture
+            System.out.println("Good Afternoon");
+            return "Good Afternoon: ";
+        } else {
+            System.out.println("Good Evening");
+            return "Good Evening: ";
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,11 +219,11 @@ public class LandingPage extends AppCompatActivity {
             @Override
             public String onCallback(String value) {
                 myEdit.putString("userID", value);
+                myEdit.apply();
                 return "";
             }
         });
 
-        //myEdit.commit();
 
         String userID= sharedPreferences.getString("userID", null);
         System.out.println("This is the userID: " + userID);
@@ -219,7 +235,7 @@ public class LandingPage extends AppCompatActivity {
 
                 System.out.println("Outside");
 
-                myEdit.commit();
+                myEdit.apply();
 
                 SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
 
@@ -228,8 +244,10 @@ public class LandingPage extends AppCompatActivity {
                 // Find the EditText field
                 TextView userGreeting = findViewById(R.id.UserGreeting);
 
+                String timeOfDay = getTimeOfDay();
+
                 // Set new text to the EditText field
-                userGreeting.setText("Hello, User!" + userFirstName);
+                userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
                 return "";
             }
         });
