@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="?attr/actionBarSize">
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintStart_toStartOf="parent"/>
+
+    <fragment
+        android:id="@+id/nav_host_fragment_activity_add_new"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation2"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="56dp" />
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/nav_host_fragment_activity_add_new"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="356dp"
+        android:layout_height="63dp"
+        android:text="What other places would you like to add to your event?"
+        android:textAlignment="center"
+        android:textColor="@color/dark_green"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_add_new"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <ImageButton
+        android:id="@+id/addByLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#7CFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.088"
+        app:srcCompat="@drawable/group_163addbylocation" />
+
+    <ImageButton
+        android:id="@+id/searchForPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#BAFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addByInterests"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/group_150searchforplace" />
+
+    <ImageButton
+        android:id="@+id/addByInterests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/back_button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addByLocation"
+        app:srcCompat="@drawable/group_149addbyinterests" />
+
+    <ImageView
+            android:layout_width="39dp"
+            android:layout_height="37dp" app:srcCompat="@drawable/search" android:id="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="@+id/searchForPlace"
+            app:layout_constraintStart_toStartOf="@+id/searchForPlace"
+            app:layout_constraintBottom_toBottomOf="@+id/searchForPlace"
+            app:layout_constraintTop_toTopOf="@+id/searchForPlace" app:layout_constraintHorizontal_bias="0.151"
+            app:layout_constraintVertical_bias="0.531"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/vectorlocation" android:id="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@+id/addByLocation"
+            app:layout_constraintStart_toStartOf="@+id/addByLocation"
+            app:layout_constraintEnd_toEndOf="@+id/addByLocation" android:layout_marginTop="28dp"
+            app:layout_constraintHorizontal_bias="0.146"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/interests" android:id="@+id/imageView9"
+            app:layout_constraintTop_toTopOf="@+id/addByInterests"
+            app:layout_constraintBottom_toBottomOf="@+id/addByInterests"
+            app:layout_constraintEnd_toEndOf="@+id/addByInterests"
+            app:layout_constraintVertical_bias="0.461" app:layout_constraintStart_toStartOf="@+id/addByInterests"
+            app:layout_constraintHorizontal_bias="0.122"/>
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/back_button_background"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_add_new"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/my_toolbar"
+        app:layout_constraintVertical_bias="0.018"
+        app:srcCompat="@drawable/group_48back" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_green"
+    android:fitsSystemWindows="true"
+    tools:context=".QuizThirdPage">
+
+
+    <TextView
+        android:id="@+id/quiz_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/quiz_intro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/quiz_background"
+        android:layout_width="373dp"
+        android:layout_height="582dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.785"
+        app:srcCompat="@drawable/quiz_questions_background" />
+
+    <TextView
+        android:id="@+id/quiz_qn3"
+        android:layout_width="302dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="34dp"
+        android:text="What is your preferred budget?"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toTopOf="@+id/quiz_background"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="299dp"
+        android:layout_height="31dp"
+        android:progress="66"
+        app:layout_constraintBottom_toBottomOf="@id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toTopOf="@+id/quiz_background"
+        app:layout_constraintVertical_bias="0.167" />
+
+
+    <!--  take marginBottom = 20dp as a guide for positioning  -->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quiz_qn3_op1"
+        android:layout_width="300dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/text_background"
+        android:text="Low, below $20"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.116" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quiz_qn3_op2"
+        android:layout_width="300dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/text_background"
+        android:text="Mid, $20-$50"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_qn3_op1"
+        app:layout_constraintVertical_bias="0.118" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quiz_qn3_op3"
+        android:layout_width="300dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/text_background"
+        android:text="High, more than $50"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_qn3_op2"
+        app:layout_constraintVertical_bias="0.265" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quiz_lets_go"
+        android:layout_width="236dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_unclicked"
+        android:text="Let's Go!"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
