@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -24,6 +26,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityLandingPageBinding;
 import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +52,50 @@ public class LandingPage extends AppCompatActivity {
         String onCallback(String value);
     }
 
+    private void getName(String userIDInput, MyCallback myCallback){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                int found = 0;
+                String firstName = "";
+                String userID = "";
+                Map<String, Object> postValues = new HashMap<String,Object>();
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+
+                    postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+
+                    userID = childSnapshot.getKey();
+                    System.out.println("This is the userID: " + userID + " " + userIDInput);
+
+                    if (userID.equals(userIDInput)){
+                        System.out.println("Hello");
+                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                            System.out.println(grandChildSnapshot.getKey());
+                            if (grandChildSnapshot.getKey().equals("firstName")) {
+                                firstName = grandChildSnapshot.getValue().toString();
+                                System.out.println("FirstName: " + firstName);
+                                found = 1;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (found == 1){
+                        break;
+                    }
+                }
+                if (found == 1) {
+                    System.out.println(firstName);
+                    myCallback.onCallback(firstName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void getdata(String email, MyCallback myCallback){
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -82,6 +129,21 @@ public class LandingPage extends AppCompatActivity {
                 System.out.println("Error");
             }
         });
+    }
+
+    private String getTimeOfDay(){
+        LocalTime currentTime = LocalTime.now();
+
+        if(currentTime.isBefore(LocalTime.NOON)) {
+            System.out.println("Good Morning");
+            return "Good Morning ";
+        } else if(currentTime.isBefore(LocalTime.of(19, 0))) { // 5 PM comparable to civil afternoon in western culture
+            System.out.println("Good Afternoon");
+            return "Good Afternoon: ";
+        } else {
+            System.out.println("Good Evening");
+            return "Good Evening: ";
+        }
     }
 
     @Override
@@ -177,15 +239,41 @@ public class LandingPage extends AppCompatActivity {
             @Override
             public String onCallback(String value) {
                 myEdit.putString("userID", value);
+                myEdit.apply();
                 return "";
             }
         });
-        myEdit.commit();
+
 
         String userID= sharedPreferences.getString("userID", null);
         System.out.println("This is the userID: " + userID);
+        getName(userID, new MyCallback() {
+            @Override
+            public String onCallback(String value) {
+                System.out.println(value);
+                myEdit.putString("firstName", value);
 
+                System.out.println("Outside");
+
+                myEdit.apply();
+
+                SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+                String userFirstName= sharedPreferences2.getString("firstName", null);
+
+                // Find the EditText field
+                TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                String timeOfDay = getTimeOfDay();
+
+                // Set new text to the EditText field
+                userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+                return "";
+            }
+        });
     }
+
+
 
     public void openEventDetails(){
         Intent intent = new Intent(this, EventDetails.class);
