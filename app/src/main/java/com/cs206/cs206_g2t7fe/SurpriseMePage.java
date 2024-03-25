@@ -221,23 +221,8 @@ public class SurpriseMePage extends AppCompatActivity {
         Log.v("place name", placeName);
         placeRef = placePic.htmlAttributions[0];
 
-//        String imageurl = api.buildImageUrl(placePic);
+
         locationImage = findViewById(R.id.placeImage);
-//        try {
-//            URL url = new URL(imageurl);
-//            Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//            locationImage.setImageBitmap(bitmap);
-//        } catch (MalformedURLException e) {
-//            Toast.makeText(getApplicationContext(),
-//                            "MalformedURLException threw a sum ting wong",
-//                            Toast.LENGTH_LONG)
-//                    .show();
-//        } catch (IOException e) {
-//            Toast.makeText(getApplicationContext(),
-//                            "ioexception at url threw a sum ting wong",
-//                            Toast.LENGTH_LONG)
-//                    .show();
-//        }
         String imageurl = api.buildImageUrl(placePic);
 
 
@@ -246,29 +231,17 @@ public class SurpriseMePage extends AppCompatActivity {
                 .placeholder(android.R.drawable.sym_def_app_icon)
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(locationImage);
-//        InputStream url = null;
-//        try {
-//            Log.v("image url", imageurl);
-//            url = new URL(imageurl).openStream();
-//            //Bitmap bitmap = BitmapFactory.decodeStream(url);
-//            //locationImage.setImageBitmap(bitmap);
-//        } catch (Exception e) {
-//            Toast.makeText(getApplicationContext(),
-//                            "exception at url threw a sum ting wen wong",
-//                            Toast.LENGTH_LONG)
-//                    .show();
-//
-//            //Log.e("error", e.getMessage());
-//        }
+
 
 
         locationName = findViewById(R.id.locationNameField);
-        locationName.setText(placeName);
+        locationName.setText("name: " + placeName);
 
         locationAddress = findViewById(R.id.locationAddressField);
-        locationAddress.setText(placeAddress);
+        locationAddress.setText("address: " + placeAddress);
 
         locationRef = findViewById(R.id.placeRefField);
+        //remove this for now, idk if i should add it but the thing looks ugly
         locationRef.setText("");
 //        if(placeRef != null) {
 //            locationRef.setText(placeRef);
