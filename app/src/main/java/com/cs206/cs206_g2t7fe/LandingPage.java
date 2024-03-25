@@ -3,11 +3,9 @@ package com.cs206.cs206_g2t7fe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
@@ -24,14 +22,22 @@ import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
     AppCompatButton newEventButton, surpriseMeButton;
 
     private ActivityLandingPageBinding binding;
+
+    private DatabaseReference mDatabase;
+    private ListView mListView;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> keyList = new ArrayList<>();
 
     String userEmail = "";
 
@@ -158,6 +164,7 @@ public class LandingPage extends AppCompatActivity {
 
         databaseReferenceEvent = firebaseDatabase.getReference("UserEvents");
 
+        /*
         button = (ImageButton) findViewById(R.id.imageButton1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +172,11 @@ public class LandingPage extends AppCompatActivity {
                 openEventDetails();
             }
         });
+        */
 
+        mListView = findViewById(R.id.list_view);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
+        mListView.setAdapter(adapter);
 
         newEventButton = (AppCompatButton) findViewById(R.id.button6);
         newEventButton.setOnClickListener(new View.OnClickListener(){
@@ -248,6 +259,32 @@ public class LandingPage extends AppCompatActivity {
 
                 // Set new text to the EditText field
                 userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+
+                ValueEventListener postListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        keyList.clear();
+                        Map<String, Object> postValues = new HashMap<>();
+                        for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                            postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+
+                            if(childSnapshot.getKey().equals(userID)){
+                                for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                    keyList.add(childSnapshot.getKey());
+                                }
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                    }
+                };
+
+                databaseReferenceEvent.addValueEventListener(postListener);
+
                 return "";
             }
         });
