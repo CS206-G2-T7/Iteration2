@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
@@ -44,6 +46,50 @@ public class LandingPage extends AppCompatActivity {
         String onCallback(String value);
     }
 
+    private void getName(String userIDInput, MyCallback myCallback){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                int found = 0;
+                String firstName = "";
+                String userID = "";
+                Map<String, Object> postValues = new HashMap<String,Object>();
+                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+
+                    postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+
+                    userID = childSnapshot.getKey();
+                    System.out.println("This is the userID: " + userID + " " + userIDInput);
+
+                    if (userID.equals(userIDInput)){
+                        System.out.println("Hello");
+                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                            System.out.println(grandChildSnapshot.getKey());
+                            if (grandChildSnapshot.getKey().equals("firstName")) {
+                                firstName = grandChildSnapshot.getValue().toString();
+                                System.out.println("FirstName: " + firstName);
+                                found = 1;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (found == 1){
+                        break;
+                    }
+                }
+                if (found == 1) {
+                    System.out.println(firstName);
+                    myCallback.onCallback(firstName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void getdata(String email, MyCallback myCallback){
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -160,12 +206,36 @@ public class LandingPage extends AppCompatActivity {
                 return "";
             }
         });
-        myEdit.commit();
+
+        //myEdit.commit();
 
         String userID= sharedPreferences.getString("userID", null);
         System.out.println("This is the userID: " + userID);
+        getName(userID, new MyCallback() {
+            @Override
+            public String onCallback(String value) {
+                System.out.println(value);
+                myEdit.putString("firstName", value);
 
+                System.out.println("Outside");
+
+                myEdit.commit();
+
+                SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+                String userFirstName= sharedPreferences2.getString("firstName", null);
+
+                // Find the EditText field
+                TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                // Set new text to the EditText field
+                userGreeting.setText("Hello, User!" + userFirstName);
+                return "";
+            }
+        });
     }
+
+
 
     public void openEventDetails(){
         Intent intent = new Intent(this, EventDetails.class);
