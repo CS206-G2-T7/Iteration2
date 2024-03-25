@@ -18,15 +18,27 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.cs206.cs206_g2t7fe.databinding.ActivityQuizFirstPageBinding;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class QuizSecondPage extends AppCompatActivity {
 
     //    private AppBarConfiguration appBarConfiguration;
     //    private ActivityQuizFirstPageBinding binding;
 
+    ArrayList<String>currentArray = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_second_page);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            ArrayList<String>previousArray = extras.getStringArrayList("q1Ans");
+            //The key argument here must match that used in the other activity
+            currentArray = previousArray;
+        }
 
         // determinate progress
         ProgressBar bar = findViewById(R.id.progressBar);
@@ -39,6 +51,7 @@ public class QuizSecondPage extends AppCompatActivity {
     // sets "next" button to open next quiz page
     public void openNextQuizPage() {
         Intent intent = new Intent(this, QuizThirdPage.class);
+        intent.putExtra("q2Ans", currentArray);
         startActivity(intent);
     }
 
@@ -85,7 +98,7 @@ public class QuizSecondPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 b.setBackgroundResource(R.drawable.button_background);
-
+                currentArray.add(getResources().getResourceName(b.getId()));
 
                 // when any options buttons is clicked, the "next" button will be enabled
                 AppCompatButton next = (AppCompatButton) findViewById(R.id.quiz_next);

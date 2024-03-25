@@ -6,9 +6,10 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
-import com.cs206.cs206_g2t7fe.databinding.ActivityVenueRecommendationsBinding;
 import com.cs206.cs206_g2t7fe.ui.CustomLoading;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.cs206.cs206_g2t7fe.databinding.ActivityVenueRecommendationsBinding;
 
 public class VenueRecommendations extends AppCompatActivity {
 

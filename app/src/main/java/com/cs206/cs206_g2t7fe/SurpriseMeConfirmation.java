@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
-
-import com.cs206.cs206_g2t7fe.databinding.ActivitySurpriseMeConfirmationBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.cs206.cs206_g2t7fe.databinding.ActivitySurpriseMeConfirmationBinding;
 
 public class SurpriseMeConfirmation extends AppCompatActivity {
 

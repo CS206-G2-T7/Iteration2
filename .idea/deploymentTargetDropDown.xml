@@ -2,9 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="SurpriseMeConfirmation">
-        <State />
-      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -13,12 +10,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Garion\.android\avd\Pixel_6_API_34.avd" />
+                  <value value="$USER_HOME$/.android/avd/Pixel_7_API_28.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-24T03:48:46.890475400Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-03-18T14:46:45.013821Z" />
         </State>
       </entry>
     </value>
