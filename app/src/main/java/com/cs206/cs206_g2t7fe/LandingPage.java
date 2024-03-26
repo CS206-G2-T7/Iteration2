@@ -116,8 +116,11 @@ public class LandingPage extends AppCompatActivity {
                     postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
 
                     userID = childSnapshot.getKey();
+                    System.out.println("This is the current userID " + userID);
+                    System.out.println("This is the email "+ email);
 
                     for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                        System.out.println(grandChildSnapshot.getValue());
                         if (grandChildSnapshot.getValue().equals(email)) {
                             found = 1;
                             break;
@@ -268,6 +271,7 @@ public class LandingPage extends AppCompatActivity {
                     System.out.println(value);
                     myEdit.putString("userID", value);
                     myEdit.apply();
+                    System.out.println("Option A");
                     getName(value, new MyCallback() {
                         @Override
                         public String onCallback(String value) {
@@ -332,6 +336,7 @@ public class LandingPage extends AppCompatActivity {
                         }
                     });
                 }else{
+                    System.out.println("Option B");
                     getName(value, new MyCallback() {
                         @Override
                         public String onCallback(String value) {

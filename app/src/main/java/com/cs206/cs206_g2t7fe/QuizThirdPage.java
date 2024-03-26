@@ -136,6 +136,7 @@ public class QuizThirdPage extends AppCompatActivity {
         Intent intent = new Intent(this, LandingPage.class);
         System.out.println(currentArray);
         handlePreferences();
+        intent.putExtra("userID", userID);
         startActivity(intent);
     }
 
