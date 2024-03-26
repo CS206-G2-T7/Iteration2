@@ -64,4 +64,5 @@
     <string name="title_activity_event_details">EventDetails</string>
     <string name="title_activity_user_onboarding_page">UserOnboardingPage</string>
     <string name="title_activity_venue_search">venueSearch</string>
+    <string name="title_activity_search">SearchActivity</string>
 </resources>
