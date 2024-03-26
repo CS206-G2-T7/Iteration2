@@ -42,6 +42,8 @@ public class LandingPage extends AppCompatActivity {
 
     private ArrayList<EventsDisplay> eventList = new ArrayList<>();
 
+    String userID;
+
     EventAdapter eventAdapter;
 
     String userEmail = "";
@@ -184,6 +186,21 @@ public class LandingPage extends AppCompatActivity {
         eventAdapter = new EventAdapter(this, eventList);
         mListView.setAdapter(eventAdapter);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // get the associated Event object
+                EventsDisplay clickedEvent = eventList.get(position);
+
+                // get the unique id
+                String uniqueId = clickedEvent.getEventID();
+
+                openEventDetails(uniqueId);
+
+                // You can now use this uniqueId to pull event information from the backend database
+            }
+        });
+
         newEventButton = (AppCompatButton) findViewById(R.id.button6);
         newEventButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -207,6 +224,9 @@ public class LandingPage extends AppCompatActivity {
 
         if (getIntent().hasExtra("Email")) {
             userEmail = getIntent().getStringExtra("Email");  // return the data associated with the "KEY"
+        }
+        if (getIntent().hasExtra("userID")) {
+            userID = getIntent().getStringExtra("userID");  // return the data associated with the "KEY"
         }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -235,9 +255,11 @@ public class LandingPage extends AppCompatActivity {
         getdata(userEmail, new MyCallback() {
             @Override
             public String onCallback(String value) {
-                System.out.println(value);
-                myEdit.putString("userID", value);
-                myEdit.apply();
+                if (userID == null){
+                    System.out.println(value);
+                    myEdit.putString("userID", value);
+                    myEdit.apply();
+                }
 
                 getName(value, new MyCallback() {
                     @Override
@@ -308,9 +330,9 @@ public class LandingPage extends AppCompatActivity {
     }
 
 
-
-    public void openEventDetails(){
+    public void openEventDetails(String eventID){
         Intent intent = new Intent(this, EventDetails.class);
+        intent.putExtra("eventID", eventID);
         startActivity(intent);
     }
 

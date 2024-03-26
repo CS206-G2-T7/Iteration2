@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 import java.util.ArrayList;
 
@@ -24,8 +28,15 @@ public class EventAdapter extends ArrayAdapter<EventsDisplay> {
         }
 
         TextView nameView = convertView.findViewById(R.id.textView_event_name);
+        TextView dateView = convertView.findViewById(R.id.textView_event_date);
+
+        Date date = new Date(event.getDate());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        String formattedDate = sdf.format(date);
 
         nameView.setText(event.getName());
+        dateView.setText(formattedDate);
 
         return convertView;
     }
