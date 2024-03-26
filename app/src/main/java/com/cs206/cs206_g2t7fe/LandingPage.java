@@ -246,6 +246,7 @@ public class LandingPage extends AppCompatActivity {
                         SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
 
                         String userFirstName= sharedPreferences2.getString("firstName", null);
+                        String userID= sharedPreferences2.getString("userID", null);
 
                         // Find the EditText field
                         TextView userGreeting = findViewById(R.id.UserGreeting);
@@ -262,13 +263,18 @@ public class LandingPage extends AppCompatActivity {
                                 Map<String, Object> postValues = new HashMap<>();
                                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
                                     postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
-
-                                    if(childSnapshot.getKey().equals(value)){
-                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                                            keyList.add(childSnapshot.getKey());
+                                    //System.out.println(childSnapshot.getKey());
+                                    for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                        if (grandChildSnapshot.getKey().equals("userID")){
+                                            System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                            if (grandChildSnapshot.getValue().equals(userID)) {
+                                                System.out.println("Inside Here");
+                                                keyList.add(childSnapshot.getKey());
+                                            }
                                         }
                                     }
                                 }
+
                                 adapter.notifyDataSetChanged();
                             }
 
@@ -283,60 +289,6 @@ public class LandingPage extends AppCompatActivity {
                         return "";
                     }
                 });
-                return "";
-            }
-        });
-
-
-        String userID= sharedPreferences.getString("userID", null);
-        System.out.println("This is the userID: " + userID);
-        getName(userID, new MyCallback() {
-            @Override
-            public String onCallback(String value) {
-                System.out.println(value);
-                myEdit.putString("firstName", value);
-
-                System.out.println("Outside");
-
-                myEdit.apply();
-
-                SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
-
-                String userFirstName= sharedPreferences2.getString("firstName", null);
-
-                // Find the EditText field
-                TextView userGreeting = findViewById(R.id.UserGreeting);
-
-                String timeOfDay = getTimeOfDay();
-
-                // Set new text to the EditText field
-                userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
-
-                ValueEventListener postListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        keyList.clear();
-                        Map<String, Object> postValues = new HashMap<>();
-                        for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                            postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
-
-                            if(childSnapshot.getKey().equals(userID)){
-                                for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                                    keyList.add(childSnapshot.getKey());
-                                }
-                            }
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w(TAG, "loadData:onCancelled", databaseError.toException());
-                    }
-                };
-
-                databaseReferenceEvent.addValueEventListener(postListener);
-
                 return "";
             }
         });
