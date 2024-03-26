@@ -10,7 +10,9 @@
     </string>
 
     <string name="direct_to_sign_up">
-            <font size="18">Don\'t Have An Account ? <u>Sign-Up Here</u></font>
+        <font size="18">Don\'t Have An Account ?
+            <u>Sign-Up Here</u>
+        </font>
     </string>
 
     <!-- Strings used for fragments for navigation -->
@@ -61,4 +63,5 @@
     <string name="title_activity_surprise_me_page">SurpriseMePage</string>
     <string name="title_activity_event_details">EventDetails</string>
     <string name="title_activity_user_onboarding_page">UserOnboardingPage</string>
+    <string name="title_activity_venue_search">venueSearch</string>
 </resources>
