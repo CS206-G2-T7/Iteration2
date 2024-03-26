@@ -1,10 +1,13 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -25,6 +28,11 @@ public class SurpriseMeConfirmation extends AppCompatActivity {
         binding = ActivitySurpriseMeConfirmationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+        String userID= sharedPreferences2.getString("userID", null);
+
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().hide();
@@ -33,7 +41,7 @@ public class SurpriseMeConfirmation extends AppCompatActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToMainPage();
+                backToMainPage(userID);
             }
         });
 
@@ -46,10 +54,19 @@ public class SurpriseMeConfirmation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_surprise_me_confirmation);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_surprise_me_confirmation);
+        if (navHostFragment != null) {
+            fragmentManager.beginTransaction().hide(navHostFragment).commit();
+            // Use this to show it again
+            // fragmentManager.beginTransaction().show(navHostFragment).commit();
+        }
+
     }
 
-    public void backToMainPage(){
+    public void backToMainPage(String userID){
         Intent intent = new Intent(this, LandingPage.class);
+        intent.putExtra("userID", userID);
         startActivity(intent);
     }
 

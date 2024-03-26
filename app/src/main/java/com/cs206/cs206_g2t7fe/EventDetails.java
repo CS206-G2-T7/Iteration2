@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -108,18 +109,67 @@ public class EventDetails extends AppCompatActivity {
                 eventNameTextView.setTextColor(Color.parseColor("#006400"));
                 contentLayout.addView(eventNameTextView);
 
+                TextView staticTextView1 = new TextView(this);
+                staticTextView1.setText("Places You Are Visiting");
+                staticTextView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+                staticTextView1.setTypeface(eventNameTextView.getTypeface(), Typeface.BOLD);
+                staticTextView1.setTextColor(Color.BLACK);
+
+                LinearLayout.LayoutParams layoutParamsForStatic = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                // Set rules to LayoutParams
+                layoutParamsForStatic.gravity = Gravity.CENTER;
+
+                // Add LayoutParams to TextView
+                staticTextView1.setLayoutParams(layoutParamsForStatic);
+
+                // Add TextView to your LinearLayout
+                contentLayout.addView(staticTextView1);
+
+                TextView staticTextView2 = new TextView(this);
+                staticTextView2.setText("Who Is Coming Along");
+                staticTextView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+                staticTextView2.setTypeface(eventNameTextView.getTypeface(), Typeface.BOLD);
+                staticTextView2.setTextColor(Color.BLACK);
+
+                // Add LayoutParams to TextView
+                staticTextView2.setLayoutParams(layoutParamsForStatic);
+
+                // Add TextView to your LinearLayout
+                contentLayout.addView(staticTextView2);
+
+                //Get The Base Root Group
+                ConstraintLayout root = findViewById(R.id.container);
+
+                // Create a new LinearLayout
+                LinearLayout linearLayout = new LinearLayout(this);
+
+                // Set some layout parameters
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                );
+
+                linearLayout.setLayoutParams(layoutParams);
+
+                // Set orientation of LinearLayout
+                linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+                // Set an id to LinearLayout
+                linearLayout.setId(View.generateViewId());
+
+                // Add LinearLayout to the root view
+                // Please replace root with your root ViewGroup instance
+                root.addView(linearLayout);
+
             } else if (entry.getKey().equals("eventID")) {
                 continue;
 
             } else{
-                TextView textViewForKey = new TextView(this);
-                textViewForKey.setText("Key is: " + entry.getKey());
-
-                TextView textViewForValue = new TextView(this);
-                textViewForValue.setText("Value is: " + entry.getValue());
-
-                contentLayout.addView(textViewForKey);
-                contentLayout.addView(textViewForValue);
+                System.out.println("Hello");
             }
         }
     }
