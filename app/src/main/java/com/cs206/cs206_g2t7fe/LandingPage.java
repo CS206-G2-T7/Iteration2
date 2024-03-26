@@ -37,7 +37,12 @@ public class LandingPage extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private ListView mListView;
     private ArrayAdapter<String> adapter;
+
     private ArrayList<String> keyList = new ArrayList<>();
+
+    private ArrayList<EventsDisplay> eventList = new ArrayList<>();
+
+    EventAdapter eventAdapter;
 
     String userEmail = "";
 
@@ -175,8 +180,9 @@ public class LandingPage extends AppCompatActivity {
         */
 
         mListView = findViewById(R.id.list_view);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
-        mListView.setAdapter(adapter);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
+        eventAdapter = new EventAdapter(this, eventList);
+        mListView.setAdapter(eventAdapter);
 
         newEventButton = (AppCompatButton) findViewById(R.id.button6);
         newEventButton.setOnClickListener(new View.OnClickListener(){
@@ -269,13 +275,20 @@ public class LandingPage extends AppCompatActivity {
                                             System.out.println(grandChildSnapshot.getValue() + " " + userID);
                                             if (grandChildSnapshot.getValue().equals(userID)) {
                                                 System.out.println("Inside Here");
-                                                keyList.add(childSnapshot.getKey());
+                                                String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                                String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                                Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                                String eventHost = childSnapshot.child("userID").getValue(String.class);
+
+                                                EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                eventList.add(eventsDisplay);
+                                                keyList.add(eventName);
                                             }
                                         }
                                     }
                                 }
 
-                                adapter.notifyDataSetChanged();
+                                eventAdapter.notifyDataSetChanged();
                             }
 
                             @Override
