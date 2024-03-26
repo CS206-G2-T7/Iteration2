@@ -229,8 +229,60 @@ public class LandingPage extends AppCompatActivity {
         getdata(userEmail, new MyCallback() {
             @Override
             public String onCallback(String value) {
+                System.out.println(value);
                 myEdit.putString("userID", value);
                 myEdit.apply();
+
+                getName(value, new MyCallback() {
+                    @Override
+                    public String onCallback(String value) {
+                        System.out.println(value);
+                        myEdit.putString("firstName", value);
+
+                        System.out.println("Outside");
+
+                        myEdit.apply();
+
+                        SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+                        String userFirstName= sharedPreferences2.getString("firstName", null);
+
+                        // Find the EditText field
+                        TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                        String timeOfDay = getTimeOfDay();
+
+                        // Set new text to the EditText field
+                        userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+
+                        ValueEventListener postListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                keyList.clear();
+                                Map<String, Object> postValues = new HashMap<>();
+                                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                                    postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+
+                                    if(childSnapshot.getKey().equals(value)){
+                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                            keyList.add(childSnapshot.getKey());
+                                        }
+                                    }
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                            }
+                        };
+
+                        databaseReferenceEvent.addValueEventListener(postListener);
+
+                        return "";
+                    }
+                });
                 return "";
             }
         });
