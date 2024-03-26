@@ -87,20 +87,23 @@ public class QuizThirdPage extends AppCompatActivity {
             if (lastPart.toLowerCase().contains("qn2")){
                 if (lastPart.equals("quiz_qn2_op1")){
                     System.out.println("1");
-                    outputArray.add("Casual Dining");
+                    outputArray.add("Cafe");
                 } else if (lastPart.equals("quiz_qn2_op2")) {
                     System.out.println("2");
-                    outputArray.add("Fine Dining");
+                    outputArray.add("Japanese");
                 } else if (lastPart.equals("quiz_qn2_op3")) {
                     System.out.println("3");
-                    outputArray.add("Ethnic Cuisine");
+                    outputArray.add("Western");
                 } else if (lastPart.equals("quiz_qn2_op4")) {
                     System.out.println("4");
-                    outputArray.add("Vegetarian Cuisine");
+                    outputArray.add("French");
                 } else if (lastPart.equals("quiz_qn2_op5")) {
                     System.out.println("5");
-                    outputArray.add("Fast Food");
-                } else {
+                    outputArray.add("Bistro");
+                } else if (lastPart.equals("quiz_qn2_op5")) {
+                    System.out.println("5");
+                    outputArray.add("Desserts");
+                }else {
                     System.out.println("Error");
                 }
             }
