@@ -3,6 +3,7 @@ package com.cs206.cs206_g2t7fe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -84,14 +85,30 @@ public class EventDetails extends AppCompatActivity {
 
     public void setContentLayout(HashMap<String, String> eventMap){
         for (Map.Entry<String, String> entry : eventMap.entrySet()) {
-            TextView textViewForKey = new TextView(this);
-            textViewForKey.setText("Key is: " + entry.getKey());
 
-            TextView textViewForValue = new TextView(this);
-            textViewForValue.setText("Value is: " + entry.getValue());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, // This makes it take up full width
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
 
-            contentLayout.addView(textViewForKey);
-            contentLayout.addView(textViewForValue);
+            if (entry.getKey().equals("eventName")){
+                TextView eventNameTextView = new TextView(this);
+                eventNameTextView.setText(entry.getValue());
+                eventNameTextView.setGravity(Gravity.CENTER);
+                eventNameTextView.setLayoutParams(params);
+                contentLayout.addView(eventNameTextView);
+            } else if (entry.getKey().equals("eventID")) {
+                continue;
+            } else{
+                TextView textViewForKey = new TextView(this);
+                textViewForKey.setText("Key is: " + entry.getKey());
+
+                TextView textViewForValue = new TextView(this);
+                textViewForValue.setText("Value is: " + entry.getValue());
+
+                contentLayout.addView(textViewForKey);
+                contentLayout.addView(textViewForValue);
+            }
         }
     }
 
