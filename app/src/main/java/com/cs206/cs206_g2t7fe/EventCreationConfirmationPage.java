@@ -1,6 +1,7 @@
 package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -33,11 +34,17 @@ public class EventCreationConfirmationPage extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().hide();
 
+        SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+        String userID= sharedPreferences2.getString("userID", null);
+
+        System.out.println("User ID In Event: " + userID);
+
         doneButton = (ImageButton) findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToMainPage();
+                backToMainPage(userID);
             }
         });
 
@@ -60,8 +67,9 @@ public class EventCreationConfirmationPage extends AppCompatActivity {
         }
     }
 
-    public void backToMainPage(){
+    public void backToMainPage(String userID){
         Intent intent = new Intent(this, LandingPage.class);
+        intent.putExtra("userID", userID);
         startActivity(intent);
     }
 

@@ -2,7 +2,10 @@ package com.cs206.cs206_g2t7fe;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -69,8 +72,9 @@ public class EventDetails extends AppCompatActivity {
                             String formattedDate = sdf.format(date);
 
                             internalHashMap.put("eventDate", formattedDate);
+                        }else{
+                            internalHashMap.put(grandChildSnapShot.getKey(), grandChildSnapShot.getValue().toString());
                         }
-                        internalHashMap.put(grandChildSnapShot.getKey(), grandChildSnapShot.getValue().toString());
                     }
                 }
                 myCallback.onCallback(internalHashMap);
@@ -91,14 +95,22 @@ public class EventDetails extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
 
+
+
             if (entry.getKey().equals("eventName")){
                 TextView eventNameTextView = new TextView(this);
                 eventNameTextView.setText(entry.getValue());
                 eventNameTextView.setGravity(Gravity.CENTER);
                 eventNameTextView.setLayoutParams(params);
+                // Set text size in SP (scaled pixels)
+                eventNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+                eventNameTextView.setTypeface(eventNameTextView.getTypeface(), Typeface.BOLD);
+                eventNameTextView.setTextColor(Color.parseColor("#006400"));
                 contentLayout.addView(eventNameTextView);
+
             } else if (entry.getKey().equals("eventID")) {
                 continue;
+
             } else{
                 TextView textViewForKey = new TextView(this);
                 textViewForKey.setText("Key is: " + entry.getKey());
