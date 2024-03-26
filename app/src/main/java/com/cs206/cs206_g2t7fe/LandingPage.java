@@ -30,7 +30,7 @@ import static android.content.ContentValues.TAG;
 
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
-    AppCompatButton newEventButton, surpriseMeButton;
+    AppCompatButton newEventButton, surpriseMeButton, LogoutButton;
 
     private ActivityLandingPageBinding binding;
 
@@ -42,7 +42,7 @@ public class LandingPage extends AppCompatActivity {
 
     private ArrayList<EventsDisplay> eventList = new ArrayList<>();
 
-    String userID;
+    String userID = null;
 
     EventAdapter eventAdapter;
 
@@ -217,6 +217,15 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        LogoutButton = (AppCompatButton) findViewById(R.id.buttonLogout);
+        LogoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -259,71 +268,133 @@ public class LandingPage extends AppCompatActivity {
                     System.out.println(value);
                     myEdit.putString("userID", value);
                     myEdit.apply();
-                }
+                    getName(value, new MyCallback() {
+                        @Override
+                        public String onCallback(String value) {
+                            System.out.println(value);
+                            myEdit.putString("firstName", value);
 
-                getName(value, new MyCallback() {
-                    @Override
-                    public String onCallback(String value) {
-                        System.out.println(value);
-                        myEdit.putString("firstName", value);
+                            System.out.println("Outside");
 
-                        System.out.println("Outside");
+                            myEdit.apply();
 
-                        myEdit.apply();
+                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
 
-                        SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+                            String userFirstName= sharedPreferences2.getString("firstName", null);
+                            String userID= sharedPreferences2.getString("userID", null);
 
-                        String userFirstName= sharedPreferences2.getString("firstName", null);
-                        String userID= sharedPreferences2.getString("userID", null);
+                            // Find the EditText field
+                            TextView userGreeting = findViewById(R.id.UserGreeting);
 
-                        // Find the EditText field
-                        TextView userGreeting = findViewById(R.id.UserGreeting);
+                            String timeOfDay = getTimeOfDay();
 
-                        String timeOfDay = getTimeOfDay();
+                            // Set new text to the EditText field
+                            userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
 
-                        // Set new text to the EditText field
-                        userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    keyList.clear();
+                                    Map<String, Object> postValues = new HashMap<>();
+                                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                                        postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+                                        //System.out.println(childSnapshot.getKey());
+                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                            if (grandChildSnapshot.getKey().equals("userID")){
+                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                                if (grandChildSnapshot.getValue().equals(userID)) {
+                                                    System.out.println("Inside Here");
+                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
 
-                        ValueEventListener postListener = new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                keyList.clear();
-                                Map<String, Object> postValues = new HashMap<>();
-                                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                                    postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
-                                    //System.out.println(childSnapshot.getKey());
-                                    for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                                        if (grandChildSnapshot.getKey().equals("userID")){
-                                            System.out.println(grandChildSnapshot.getValue() + " " + userID);
-                                            if (grandChildSnapshot.getValue().equals(userID)) {
-                                                System.out.println("Inside Here");
-                                                String eventName = childSnapshot.child("eventName").getValue(String.class);
-                                                String eventID = childSnapshot.child("eventID").getValue(String.class);
-                                                Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
-                                                String eventHost = childSnapshot.child("userID").getValue(String.class);
-
-                                                EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
-                                                eventList.add(eventsDisplay);
-                                                keyList.add(eventName);
+                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                    eventList.add(eventsDisplay);
+                                                    keyList.add(eventName);
+                                                }
                                             }
                                         }
                                     }
+
+                                    eventAdapter.notifyDataSetChanged();
                                 }
 
-                                eventAdapter.notifyDataSetChanged();
-                            }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                                }
+                            };
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                Log.w(TAG, "loadData:onCancelled", databaseError.toException());
-                            }
-                        };
+                            databaseReferenceEvent.addValueEventListener(postListener);
 
-                        databaseReferenceEvent.addValueEventListener(postListener);
+                            return "";
+                        }
+                    });
+                }else{
+                    getName(value, new MyCallback() {
+                        @Override
+                        public String onCallback(String value) {
+                            System.out.println(value);
+                            myEdit.putString("firstName", value);
 
-                        return "";
-                    }
-                });
+                            System.out.println("Outside");
+
+                            myEdit.apply();
+
+                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+                            String userFirstName= sharedPreferences2.getString("firstName", null);
+
+                            // Find the EditText field
+                            TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                            String timeOfDay = getTimeOfDay();
+
+                            // Set new text to the EditText field
+                            userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    keyList.clear();
+                                    Map<String, Object> postValues = new HashMap<>();
+                                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                                        postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+                                        //System.out.println(childSnapshot.getKey());
+                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                            if (grandChildSnapshot.getKey().equals("userID")){
+                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                                if (grandChildSnapshot.getValue().equals(userID)) {
+                                                    System.out.println("Inside Here");
+                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
+
+                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                    eventList.add(eventsDisplay);
+                                                    keyList.add(eventName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    eventAdapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                                }
+                            };
+
+                            databaseReferenceEvent.addValueEventListener(postListener);
+
+                            return "";
+                        }
+                    });
+                }
                 return "";
             }
         });
@@ -349,6 +420,20 @@ public class LandingPage extends AppCompatActivity {
 
     public void openSupriseMePage(){
         Intent intent = new Intent(this, SurpriseMePage.class);
+        startActivity(intent);
+    }
+
+    public void logout(){
+        SharedPreferences sharedPreferences = getSharedPreferences("YourSharedPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Clear all data
+        editor.clear();
+
+        // Commit the changes
+        editor.apply();
+
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
 }

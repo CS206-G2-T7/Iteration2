@@ -8,102 +8,114 @@
     android:paddingTop="?attr/actionBarSize">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
-        android:background="@color/white"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="30dp">
-
-        <TextView
-            android:id="@+id/LocationBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location: Bencoolen"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_mylocation"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <fragment
-            android:id="@+id/nav_host_fragment_activity_landing_page"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/mobile_navigation" />
-
-        <EditText
-            android:id="@+id/MainSearchBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Search"
-            app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.124"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
-            app:layout_constraintVertical_bias="0.102" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="56dp"
-            android:layout_height="46dp"
-            android:layout_weight="1"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.741"
-            app:layout_constraintStart_toEndOf="@+id/MainSearchBar"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1"
-            app:srcCompat="@drawable/settings" />
+            tools:layout_editor_absoluteX="30dp">
 
         <TextView
-            android:id="@+id/UserGreeting"
-            android:layout_width="265dp"
-            android:layout_height="46dp"
-            android:text="Good Morning Jay! These are your events for the day :)"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.171"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/MainSearchBar"
-            app:layout_constraintVertical_bias="0.042" />
+                android:id="@+id/LocationBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location: Bencoolen"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonLogout"
+                android:layout_width="138dp"
+                android:layout_height="33dp"
+                android:background="@drawable/button_background"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:text="Logout"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/LocationBar"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/imageView5"/>
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_mylocation"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="16dp"/>
+
+        <fragment
+                android:id="@+id/nav_host_fragment_activity_landing_page"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/mobile_navigation"/>
+
+        <EditText
+                android:id="@+id/MainSearchBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="Search"
+                app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.124"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
+                app:layout_constraintVertical_bias="0.102"/>
+
+        <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.741"
+                app:layout_constraintStart_toEndOf="@+id/MainSearchBar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                app:srcCompat="@drawable/settings"/>
+
+        <TextView
+                android:id="@+id/UserGreeting"
+                android:layout_width="265dp"
+                android:layout_height="46dp"
+                android:text="Good Morning Jay! These are your events for the day :)"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.171"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/MainSearchBar"
+                app:layout_constraintVertical_bias="0.042"/>
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/MainSearchBar"
-            app:layout_constraintVertical_bias="1.0"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment_activity_landing_page"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/MainSearchBar"
+                app:layout_constraintVertical_bias="1.0"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         <ImageView
                 android:id="@+id/imageView2"
@@ -117,17 +129,17 @@
                 app:srcCompat="@drawable/see_all_button"/>
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="254dp"
-            android:layout_height="25dp"
-            android:text="Recent Places Visited By Your Friends"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.159"
-            app:layout_constraintStart_toStartOf="@+id/nav_host_fragment_activity_landing_page"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/textView"
+                android:layout_width="254dp"
+                android:layout_height="25dp"
+                android:text="Recent Places Visited By Your Friends"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.159"
+                app:layout_constraintStart_toStartOf="@+id/nav_host_fragment_activity_landing_page"
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
                 android:id="@+id/imageView6"
@@ -140,64 +152,64 @@
                 app:srcCompat="@drawable/see_all_button"/>
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Not sure which one to pick?"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.106"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
-            app:layout_constraintVertical_bias="0.74" />
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not sure which one to pick?"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.106"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
+                app:layout_constraintVertical_bias="0.74"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/surpriseMe"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
-            android:background="@drawable/surprise_me_button"
-            android:text="Surprise Me!"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.095"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.105" />
+                android:id="@+id/surpriseMe"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:background="@drawable/surprise_me_button"
+                android:text="Surprise Me!"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.095"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintVertical_bias="0.105"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button6"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/button_background"
-            android:drawableStart="@drawable/image_17"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"
-            android:text="Add Event"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.813"
-            app:layout_constraintStart_toEndOf="@+id/surpriseMe"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-            app:layout_constraintVertical_bias="0.578" />
+                android:id="@+id/button6"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_background"
+                android:drawableStart="@drawable/image_17"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:text="Add Event"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/my_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.813"
+                app:layout_constraintStart_toEndOf="@+id/surpriseMe"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+                app:layout_constraintVertical_bias="0.578"/>
 
         <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.391"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.326"
-            app:srcCompat="@drawable/group_50" />
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.391"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.326"
+                app:srcCompat="@drawable/group_50"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav_view"
@@ -210,7 +222,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                app:menu="@menu/bottom_nav_menu" />
+                app:menu="@menu/bottom_nav_menu"/>
         <ListView
                 android:layout_width="374dp"
                 android:layout_height="119dp"
