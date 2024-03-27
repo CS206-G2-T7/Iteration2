@@ -52,4 +52,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.maps:google-maps-services:2.2.0")
+    implementation("org.slf4j:slf4j-simple:1.7.25")
+    implementation("com.squareup.picasso:picasso:2.8")
+    //implementation("org.tensorflow:tensorflow-lite:2.8.0")
 }
+

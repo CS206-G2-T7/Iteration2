@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.*;
+import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
@@ -47,6 +50,8 @@ public class LandingPage extends AppCompatActivity {
 
     EventAdapter eventAdapter;
 
+    Spinner locationSelect;
+    String location;
     String userEmail = "";
 
     // creating a variable for our
@@ -221,14 +226,29 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        LogoutButton = (AppCompatButton) findViewById(R.id.buttonLogout);
-        LogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
 
+        LogoutButton = (AppCompatButton) findViewById(R.id.buttonLogout);
+        /*
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
+            locationSelect = (Spinner)findViewById(R.id.locationSelect);
+            ArrayAdapter<String> mrtList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Mrtlocations.getMrtList());
+            
+            //set the spinners adapter to the previously created one.
+            locationSelect.setAdapter(mrtList);
+
+            locationSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    location = mrtList.getItem(position);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    location = mrtList.getItem(0);
+                }
+            });
+        });
+        */
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -366,6 +386,7 @@ public class LandingPage extends AppCompatActivity {
 
     public void openSupriseMePage(){
         Intent intent = new Intent(this, SurpriseMePage.class);
+        intent.putExtra("location", location);
         startActivity(intent);
     }
 
