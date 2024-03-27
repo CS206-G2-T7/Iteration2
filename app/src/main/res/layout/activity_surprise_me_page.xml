@@ -190,8 +190,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" 
+        app:layout_constraintVertical_bias="1.0"/>
     <TextView
         android:id="@+id/locationAddressField"
         android:layout_width="299dp"
@@ -200,6 +200,7 @@
         android:layout_marginTop="8dp"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationNameField" />
+        app:layout_constraintTop_toBottomOf="@+id/locationNameField" 
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

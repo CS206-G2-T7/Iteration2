@@ -3,13 +3,11 @@ package com.cs206.cs206_g2t7fe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.*;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -27,14 +25,41 @@ import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.ContentValues.TAG;
+
 public class LandingPage extends AppCompatActivity {
     ImageButton button;
-    AppCompatButton newEventButton, surpriseMeButton;
+    AppCompatButton newEventButton, surpriseMeButton, LogoutButton;
 
     private ActivityLandingPageBinding binding;
+
+    private DatabaseReference mDatabase;
+    private ListView mListView;
+    private ArrayAdapter<String> adapter;
+
+    private ArrayList<String> keyList = new ArrayList<>();
+
+    private ArrayList<EventsDisplay> eventList = new ArrayList<>();
+
+    String userID = null;
+
+    EventAdapter eventAdapter;
+
+    private DatabaseReference mDatabase;
+    private ListView mListView;
+    private ArrayAdapter<String> adapter;
+
+    private ArrayList<String> keyList = new ArrayList<>();
+
+    private ArrayList<EventsDisplay> eventList = new ArrayList<>();
+
+    String userID = null;
+
+    EventAdapter eventAdapter;
 
     Spinner locationSelect;
     String location;
@@ -108,8 +133,11 @@ public class LandingPage extends AppCompatActivity {
                     postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
 
                     userID = childSnapshot.getKey();
+                    System.out.println("This is the current userID " + userID);
+                    System.out.println("This is the email "+ email);
 
                     for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                        System.out.println(grandChildSnapshot.getValue());
                         if (grandChildSnapshot.getValue().equals(email)) {
                             found = 1;
                             break;
@@ -163,6 +191,7 @@ public class LandingPage extends AppCompatActivity {
 
         databaseReferenceEvent = firebaseDatabase.getReference("UserEvents");
 
+        /*
         button = (ImageButton) findViewById(R.id.imageButton1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +199,27 @@ public class LandingPage extends AppCompatActivity {
                 openEventDetails();
             }
         });
+        */
 
+        mListView = findViewById(R.id.list_view);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
+        eventAdapter = new EventAdapter(this, eventList);
+        mListView.setAdapter(eventAdapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // get the associated Event object
+                EventsDisplay clickedEvent = eventList.get(position);
+
+                // get the unique id
+                String uniqueId = clickedEvent.getEventID();
+
+                openEventDetails(uniqueId);
+
+                // You can now use this uniqueId to pull event information from the backend database
+            }
+        });
 
         newEventButton = (AppCompatButton) findViewById(R.id.button6);
         newEventButton.setOnClickListener(new View.OnClickListener(){
@@ -188,21 +237,6 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        locationSelect = findViewById(R.id.locationSelect);
-        ArrayAdapter<String> mrtList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Mrtlocations.getMrtList());
-        //set the spinners adapter to the previously created one.
-        locationSelect.setAdapter(mrtList);
-        locationSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                location = mrtList.getItem(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                location = mrtList.getItem(0);
-            }
-        });
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -210,6 +244,9 @@ public class LandingPage extends AppCompatActivity {
 
         if (getIntent().hasExtra("Email")) {
             userEmail = getIntent().getStringExtra("Email");  // return the data associated with the "KEY"
+        }
+        if (getIntent().hasExtra("userID")) {
+            userID = getIntent().getStringExtra("userID");  // return the data associated with the "KEY"
         }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -238,45 +275,148 @@ public class LandingPage extends AppCompatActivity {
         getdata(userEmail, new MyCallback() {
             @Override
             public String onCallback(String value) {
-                myEdit.putString("userID", value);
-                myEdit.apply();
-                return "";
-            }
-        });
+                if (userID == null){
+                    System.out.println(value);
+                    myEdit.putString("userID", value);
+                    myEdit.apply();
+                    System.out.println("Option A");
+                    getName(value, new MyCallback() {
+                        @Override
+                        public String onCallback(String value) {
+                            System.out.println(value);
+                            myEdit.putString("firstName", value);
 
+                            System.out.println("Outside");
 
-        String userID= sharedPreferences.getString("userID", null);
-        System.out.println("This is the userID: " + userID);
-        getName(userID, new MyCallback() {
-            @Override
-            public String onCallback(String value) {
-                System.out.println(value);
-                myEdit.putString("firstName", value);
+                            myEdit.apply();
 
-                System.out.println("Outside");
+                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
 
-                myEdit.apply();
+                            String userFirstName= sharedPreferences2.getString("firstName", null);
+                            String userID= sharedPreferences2.getString("userID", null);
 
-                SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+                            // Find the EditText field
+                            TextView userGreeting = findViewById(R.id.UserGreeting);
 
-                String userFirstName= sharedPreferences2.getString("firstName", null);
+                            String timeOfDay = getTimeOfDay();
 
-                // Find the EditText field
-                TextView userGreeting = findViewById(R.id.UserGreeting);
+                            // Set new text to the EditText field
+                            userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
 
-                String timeOfDay = getTimeOfDay();
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    keyList.clear();
+                                    Map<String, Object> postValues = new HashMap<>();
+                                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                                        postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+                                        //System.out.println(childSnapshot.getKey());
+                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                            if (grandChildSnapshot.getKey().equals("userID")){
+                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                                if (grandChildSnapshot.getValue().equals(userID)) {
+                                                    System.out.println("Inside Here");
+                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
 
-                // Set new text to the EditText field
-                userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                    eventList.add(eventsDisplay);
+                                                    keyList.add(eventName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    eventAdapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                                }
+                            };
+
+                            databaseReferenceEvent.addValueEventListener(postListener);
+
+                            return "";
+                        }
+                    });
+                }else{
+                    System.out.println("Option B");
+                    getName(value, new MyCallback() {
+                        @Override
+                        public String onCallback(String value) {
+                            System.out.println(value);
+                            myEdit.putString("firstName", value);
+
+                            System.out.println("Outside");
+
+                            myEdit.apply();
+
+                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+                            String userFirstName= sharedPreferences2.getString("firstName", null);
+
+                            // Find the EditText field
+                            TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                            String timeOfDay = getTimeOfDay();
+
+                            // Set new text to the EditText field
+                            userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
+
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    keyList.clear();
+                                    Map<String, Object> postValues = new HashMap<>();
+                                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                                        postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
+                                        //System.out.println(childSnapshot.getKey());
+                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
+                                            if (grandChildSnapshot.getKey().equals("userID")){
+                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                                if (grandChildSnapshot.getValue().equals(userID)) {
+                                                    System.out.println("Inside Here");
+                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
+
+                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                    eventList.add(eventsDisplay);
+                                                    keyList.add(eventName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    eventAdapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                                }
+                            };
+
+                            databaseReferenceEvent.addValueEventListener(postListener);
+
+                            return "";
+                        }
+                    });
+                }
                 return "";
             }
         });
     }
 
 
-
-    public void openEventDetails(){
+    public void openEventDetails(String eventID){
         Intent intent = new Intent(this, EventDetails.class);
+        intent.putExtra("eventID", eventID);
         startActivity(intent);
     }
 
@@ -294,6 +434,20 @@ public class LandingPage extends AppCompatActivity {
     public void openSupriseMePage(){
         Intent intent = new Intent(this, SurpriseMePage.class);
         intent.putExtra("location", location);
+        startActivity(intent);
+    }
+
+    public void logout(){
+        SharedPreferences sharedPreferences = getSharedPreferences("YourSharedPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Clear all data
+        editor.clear();
+
+        // Commit the changes
+        editor.apply();
+
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
 }

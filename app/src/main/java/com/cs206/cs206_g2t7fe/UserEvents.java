@@ -1,5 +1,10 @@
 package com.cs206.cs206_g2t7fe;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserEvents {
     private String userID;
 
@@ -45,6 +50,16 @@ public class UserEvents {
 
     public void setEventDate(Long eventDate){
         this.eventDate = eventDate;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("eventID", eventID);
+        result.put("eventName", eventName);
+        result.put("userID", userID);
+        result.put("eventDate", eventDate);
+        return result;
     }
 
 }
