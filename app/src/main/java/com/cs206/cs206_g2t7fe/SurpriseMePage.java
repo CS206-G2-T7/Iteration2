@@ -32,7 +32,7 @@ import com.google.maps.model.Photo;
 import com.google.maps.errors.ApiException;
 import com.squareup.picasso.Picasso;
 
-import org.tensorflow.lite.*;
+//import org.tensorflow.lite.*;
 
 import java.io.IOException;
 import java.io.InputStream;
