@@ -49,18 +49,6 @@ public class LandingPage extends AppCompatActivity {
 
     EventAdapter eventAdapter;
 
-    private DatabaseReference mDatabase;
-    private ListView mListView;
-    private ArrayAdapter<String> adapter;
-
-    private ArrayList<String> keyList = new ArrayList<>();
-
-    private ArrayList<EventsDisplay> eventList = new ArrayList<>();
-
-    String userID = null;
-
-    EventAdapter eventAdapter;
-
     Spinner locationSelect;
     String location;
     String userEmail = "";
