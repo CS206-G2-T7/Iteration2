@@ -55,5 +55,7 @@ dependencies {
     implementation("com.google.maps:google-maps-services:2.2.0")
     implementation("org.slf4j:slf4j-simple:1.7.25")
     implementation("com.squareup.picasso:picasso:2.8")
+    implementation("org.tensorflow:tensorflow-core-platform:2.16.1")
+    implementation("org.tensorflow:tensorflow-lite:0.0.0-nightly")
 }
 
