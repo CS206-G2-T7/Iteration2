@@ -226,29 +226,29 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-
         LogoutButton = (AppCompatButton) findViewById(R.id.buttonLogout);
-        /*
         LogoutButton.setOnClickListener(new View.OnClickListener() {
-            locationSelect = (Spinner)findViewById(R.id.locationSelect);
-            ArrayAdapter<String> mrtList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Mrtlocations.getMrtList());
-            
-            //set the spinners adapter to the previously created one.
-            locationSelect.setAdapter(mrtList);
-
-            locationSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    location = mrtList.getItem(position);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    location = mrtList.getItem(0);
-                }
-            });
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
         });
-        */
+
+        locationSelect = findViewById(R.id.locationSelect);
+        ArrayAdapter<String> mrtList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Mrtlocations.getMrtList());
+        //set the spinners adapter to the previously created one.
+        locationSelect.setAdapter(mrtList);
+        locationSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                location = mrtList.getItem(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                location = mrtList.getItem(0);
+            }
+        });
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

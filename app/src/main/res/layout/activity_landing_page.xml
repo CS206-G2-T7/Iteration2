@@ -222,7 +222,7 @@
                 app:layout_constraintHorizontal_bias="0.675" app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/UserGreeting" app:layout_constraintVertical_bias="0.416"
                 android:id="@+id/list_view"
-                app:menu="@menu/bottom_nav_menu" />
+                app:menu="@menu/bottom_menu" />
 
         <Spinner
             android:id="@+id/locationSelect"
@@ -237,9 +237,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        
-    
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
