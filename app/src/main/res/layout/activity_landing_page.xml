@@ -17,28 +17,20 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="30dp">
 
-        <TextView
-                android:id="@+id/LocationBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location: Bencoolen"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"/>
-
         <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonLogout"
-                android:layout_width="138dp"
-                android:layout_height="33dp"
-                android:background="@drawable/button_background"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:text="Logout"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/LocationBar"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/imageView5"/>
+            android:id="@+id/buttonLogout"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:text="Logout"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.81"
+            app:layout_constraintStart_toEndOf="@+id/locationSelect"
+            app:layout_constraintTop_toTopOf="parent" />
         <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
@@ -231,23 +223,16 @@
                 android:id="@+id/list_view"
                 app:menu="@menu/bottom_nav_menu" />
 
-            <Spinner
-                android:id="@+id/locationSelect"
-                android:layout_width="246dp"
-                android:layout_height="31dp"
-                app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Spinner
-                android:id="@+id/locationSelect"
-                android:layout_width="246dp"
-                android:layout_height="31dp"
-                app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Spinner
+            android:id="@+id/locationSelect"
+            android:layout_width="200dp"
+            android:layout_height="31dp"
+            app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.343" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

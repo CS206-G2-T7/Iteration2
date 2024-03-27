@@ -32,6 +32,8 @@ import com.google.maps.model.Photo;
 import com.google.maps.errors.ApiException;
 import com.squareup.picasso.Picasso;
 
+import org.tensorflow.lite.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -82,6 +84,7 @@ public class SurpriseMePage extends AppCompatActivity {
 //            centralloc.lng = centralloc.lng/ /*number of people*/;
 //            pricepoint = pricepoint / /*number of people in group*/
 
+//            TensorFlowLite.init();
             String location = getIntent().getExtras().getString("location");
             Log.v("location", location);
             LatLng centralLoc = api.getLatLng(location);
