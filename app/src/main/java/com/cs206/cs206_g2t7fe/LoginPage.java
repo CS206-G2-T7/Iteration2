@@ -165,6 +165,7 @@ public class LoginPage extends AppCompatActivity {
                                                         = new Intent(LoginPage.this,
                                                         LandingPage.class);
                                                 intent.putExtra("Email", email);
+                                                System.out.println("This is the login email " + email);
                                                 startActivity(intent);
                                             }else{
                                                 Toast.makeText(getApplicationContext(),

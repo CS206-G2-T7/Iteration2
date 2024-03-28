@@ -60,25 +60,39 @@ public class EventDetails extends AppCompatActivity {
 
     private void getEventDetails (String eventID, MyCallback myCallback ){
         databaseReference.addValueEventListener(new ValueEventListener() {
+            int matched = 0;
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
                 HashMap<String, String> internalHashMap = new HashMap<>();
                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()){
-                    for (DataSnapshot grandChildSnapShot: childSnapshot.getChildren()){
-                        if (grandChildSnapShot.getKey().equals("eventDate")){
+                    System.out.println("This is the current event: " + childSnapshot.getValue());
+                    System.out.println(childSnapshot.getKey());
+                    if (childSnapshot.getKey().equals(eventID)){
+                        matched = 1;
+                        for (DataSnapshot grandChildSnapShot: childSnapshot.getChildren()){
+                            System.out.println(grandChildSnapShot.getValue());
+                            System.out.println("Matched");
+                            if (grandChildSnapShot.getKey().equals("eventDate")){
 
-                            Date date = new Date(grandChildSnapShot.getValue(Long.class));
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                                Date date = new Date(grandChildSnapShot.getValue(Long.class));
+                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
-                            String formattedDate = sdf.format(date);
+                                String formattedDate = sdf.format(date);
 
-                            internalHashMap.put("eventDate", formattedDate);
-                        }else{
-                            internalHashMap.put(grandChildSnapShot.getKey(), grandChildSnapShot.getValue().toString());
+                                internalHashMap.put("eventDate", formattedDate);
+                            }else{
+                                internalHashMap.put(grandChildSnapShot.getKey(), grandChildSnapShot.getValue().toString());
+                            }
                         }
                     }
+                    System.out.println(internalHashMap.toString());
+                    if (matched == 1){
+                        break;
+                    }
                 }
-                myCallback.onCallback(internalHashMap);
+                if (matched == 1){
+                    myCallback.onCallback(internalHashMap);
+                }
             }
 
             @Override

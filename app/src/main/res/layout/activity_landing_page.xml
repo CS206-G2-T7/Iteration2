@@ -65,6 +65,17 @@
                 app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
                 app:layout_constraintVertical_bias="0.102"/>
 
+        <Spinner
+                android:id="@+id/locationSelect"
+                android:layout_width="200dp"
+                android:layout_height="31dp"
+                app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.343" />
+
         <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="56dp"
@@ -213,7 +224,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"/>
+                app:layout_constraintVertical_bias="1.0"
+                app:menu="@menu/bottom_menu"/>
         <ListView
                 android:layout_width="374dp"
                 android:layout_height="119dp"
@@ -221,24 +233,9 @@
                 app:layout_constraintHorizontal_bias="0.675" app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/UserGreeting" app:layout_constraintVertical_bias="0.416"
                 android:id="@+id/list_view"
-                app:menu="@menu/bottom_nav_menu" />
+                app:menu="@menu/bottom_menu" />
 
-        <Spinner
-            android:id="@+id/locationSelect"
-            android:layout_width="200dp"
-            android:layout_height="31dp"
-            app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.343" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        
-    
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

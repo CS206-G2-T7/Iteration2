@@ -1,5 +1,6 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -125,8 +126,8 @@ public class LandingPage extends AppCompatActivity {
                     System.out.println("This is the email "+ email);
 
                     for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                        System.out.println(grandChildSnapshot.getValue());
                         if (grandChildSnapshot.getValue().equals(email)) {
+                            System.out.println(grandChildSnapshot.getValue());
                             found = 1;
                             break;
                         }
@@ -210,7 +211,7 @@ public class LandingPage extends AppCompatActivity {
         });
 
         newEventButton = (AppCompatButton) findViewById(R.id.button6);
-        newEventButton.setOnClickListener(new View.OnClickListener(){
+        newEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createNewEvent();
@@ -218,14 +219,22 @@ public class LandingPage extends AppCompatActivity {
         });
 
         surpriseMeButton = (AppCompatButton) findViewById(R.id.surpriseMe);
-        surpriseMeButton.setOnClickListener(new View.OnClickListener(){
+        surpriseMeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSupriseMePage();
             }
         });
 
-        locationSelect = findViewById(R.id.locationSelect);
+        LogoutButton = (AppCompatButton) findViewById(R.id.buttonLogout);
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+        locationSelect = (Spinner) findViewById(R.id.locationSelect);
         ArrayAdapter<String> mrtList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Mrtlocations.getMrtList());
         //set the spinners adapter to the previously created one.
         locationSelect.setAdapter(mrtList);
@@ -245,11 +254,167 @@ public class LandingPage extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().hide();
 
+        SharedPreferences sharedPref = this.getSharedPreferences("SharedPref", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        // Storing data into SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+
+        // Creating an Editor object to edit(write to the file)
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
         if (getIntent().hasExtra("Email")) {
-            userEmail = getIntent().getStringExtra("Email");  // return the data associated with the "KEY"
+            userEmail = getIntent().getStringExtra("Email");
+            getdata(userEmail, new MyCallback() {
+                @Override
+                public String onCallback(String value) {
+
+                    System.out.println("This is the login userID " + value);
+
+                    editor.putString("userID", value);
+                    editor.apply();
+
+                    userID =  value;
+
+                    getName(userID, new MyCallback() {
+                        @Override
+                        public String onCallback(String value) {
+                            System.out.println(value);
+
+                            myEdit.putString("firstName", value);
+
+                            System.out.println("Outside");
+
+                            myEdit.apply();
+
+                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref", MODE_PRIVATE);
+
+                            String userFirstName = sharedPreferences2.getString("firstName", null);
+
+                            // Find the EditText field
+                            TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                            String timeOfDay = getTimeOfDay();
+
+                            // Set new text to the EditText field
+                            userGreeting.setText(timeOfDay + userFirstName + "! These are your events at a glance.");
+
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    keyList.clear();
+                                    Map<String, Object> postValues = new HashMap<>();
+                                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                        postValues.put(childSnapshot.getKey(), childSnapshot.getValue());
+                                        //System.out.println(childSnapshot.getKey());
+                                        for (DataSnapshot grandChildSnapshot : childSnapshot.getChildren()) {
+                                            if (grandChildSnapshot.getKey().equals("userID")) {
+                                                System.out.println("PostListener");
+                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                                if (grandChildSnapshot.getValue().equals(userID)) {
+                                                    System.out.println("Inside Here");
+                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
+
+                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                    eventList.add(eventsDisplay);
+                                                    keyList.add(eventName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    eventAdapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                                }
+                            };
+
+                            databaseReferenceEvent.addValueEventListener(postListener);
+
+                            return "";
+                        }
+                    });
+
+                    return null;
+                }
+            });// return the data associated with the "KEY"
         }
         if (getIntent().hasExtra("userID")) {
+            System.out.println("UserID is present");
             userID = getIntent().getStringExtra("userID");  // return the data associated with the "KEY"
+
+            System.out.println("Starting User ID ");
+            editor.putString("userID", userID);
+            editor.apply();
+            getName(userID, new MyCallback() {
+                @Override
+                public String onCallback(String value) {
+                    System.out.println(value);
+                    myEdit.putString("firstName", value);
+
+                    System.out.println("Outside");
+
+                    myEdit.apply();
+
+                    SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref", MODE_PRIVATE);
+
+                    String userFirstName = sharedPreferences2.getString("firstName", null);
+
+                    // Find the EditText field
+                    TextView userGreeting = findViewById(R.id.UserGreeting);
+
+                    String timeOfDay = getTimeOfDay();
+
+                    // Set new text to the EditText field
+                    userGreeting.setText(timeOfDay + userFirstName + "! These are your events at a glance.");
+
+                    ValueEventListener postListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            keyList.clear();
+                            Map<String, Object> postValues = new HashMap<>();
+                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                postValues.put(childSnapshot.getKey(), childSnapshot.getValue());
+                                //System.out.println(childSnapshot.getKey());
+                                for (DataSnapshot grandChildSnapshot : childSnapshot.getChildren()) {
+                                    if (grandChildSnapshot.getKey().equals("userID")) {
+                                        System.out.println(grandChildSnapshot.getValue() + " " + userID);
+                                        if (grandChildSnapshot.getValue().equals(userID)) {
+                                            System.out.println("Inside Here");
+                                            String eventName = childSnapshot.child("eventName").getValue(String.class);
+                                            String eventID = childSnapshot.child("eventID").getValue(String.class);
+                                            Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
+                                            String eventHost = childSnapshot.child("userID").getValue(String.class);
+
+                                            EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                            eventList.add(eventsDisplay);
+                                            keyList.add(eventName);
+                                        }
+                                    }
+                                }
+                            }
+
+                            eventAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w(TAG, "loadData:onCancelled", databaseError.toException());
+                        }
+                    };
+
+                    databaseReferenceEvent.addValueEventListener(postListener);
+
+                    return "";
+                }
+            });
         }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -269,153 +434,7 @@ public class LandingPage extends AppCompatActivity {
             // Use this to show it again
             // fragmentManager.beginTransaction().show(navHostFragment).commit();
         }
-
-        // Storing data into SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref",MODE_PRIVATE);
-
-        // Creating an Editor object to edit(write to the file)
-        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-        getdata(userEmail, new MyCallback() {
-            @Override
-            public String onCallback(String value) {
-                if (userID == null){
-                    System.out.println(value);
-                    myEdit.putString("userID", value);
-                    myEdit.apply();
-                    System.out.println("Option A");
-                    getName(value, new MyCallback() {
-                        @Override
-                        public String onCallback(String value) {
-                            System.out.println(value);
-                            myEdit.putString("firstName", value);
-
-                            System.out.println("Outside");
-
-                            myEdit.apply();
-
-                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
-
-                            String userFirstName= sharedPreferences2.getString("firstName", null);
-                            String userID= sharedPreferences2.getString("userID", null);
-
-                            // Find the EditText field
-                            TextView userGreeting = findViewById(R.id.UserGreeting);
-
-                            String timeOfDay = getTimeOfDay();
-
-                            // Set new text to the EditText field
-                            userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
-
-                            ValueEventListener postListener = new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    keyList.clear();
-                                    Map<String, Object> postValues = new HashMap<>();
-                                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                                        postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
-                                        //System.out.println(childSnapshot.getKey());
-                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                                            if (grandChildSnapshot.getKey().equals("userID")){
-                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
-                                                if (grandChildSnapshot.getValue().equals(userID)) {
-                                                    System.out.println("Inside Here");
-                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
-                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
-                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
-                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
-
-                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
-                                                    eventList.add(eventsDisplay);
-                                                    keyList.add(eventName);
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    eventAdapter.notifyDataSetChanged();
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
-                                }
-                            };
-
-                            databaseReferenceEvent.addValueEventListener(postListener);
-
-                            return "";
-                        }
-                    });
-                }else{
-                    System.out.println("Option B");
-                    getName(value, new MyCallback() {
-                        @Override
-                        public String onCallback(String value) {
-                            System.out.println(value);
-                            myEdit.putString("firstName", value);
-
-                            System.out.println("Outside");
-
-                            myEdit.apply();
-
-                            SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
-
-                            String userFirstName= sharedPreferences2.getString("firstName", null);
-
-                            // Find the EditText field
-                            TextView userGreeting = findViewById(R.id.UserGreeting);
-
-                            String timeOfDay = getTimeOfDay();
-
-                            // Set new text to the EditText field
-                            userGreeting.setText(timeOfDay + userFirstName +"! These are your events at a glance.");
-
-                            ValueEventListener postListener = new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    keyList.clear();
-                                    Map<String, Object> postValues = new HashMap<>();
-                                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                                        postValues.put(childSnapshot.getKey(),childSnapshot.getValue());
-                                        //System.out.println(childSnapshot.getKey());
-                                        for (DataSnapshot grandChildSnapshot: childSnapshot.getChildren()) {
-                                            if (grandChildSnapshot.getKey().equals("userID")){
-                                                System.out.println(grandChildSnapshot.getValue() + " " + userID);
-                                                if (grandChildSnapshot.getValue().equals(userID)) {
-                                                    System.out.println("Inside Here");
-                                                    String eventName = childSnapshot.child("eventName").getValue(String.class);
-                                                    String eventID = childSnapshot.child("eventID").getValue(String.class);
-                                                    Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
-                                                    String eventHost = childSnapshot.child("userID").getValue(String.class);
-
-                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
-                                                    eventList.add(eventsDisplay);
-                                                    keyList.add(eventName);
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    eventAdapter.notifyDataSetChanged();
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                    Log.w(TAG, "loadData:onCancelled", databaseError.toException());
-                                }
-                            };
-
-                            databaseReferenceEvent.addValueEventListener(postListener);
-
-                            return "";
-                        }
-                    });
-                }
-                return "";
-            }
-        });
     }
-
 
     public void openEventDetails(String eventID){
         Intent intent = new Intent(this, EventDetails.class);

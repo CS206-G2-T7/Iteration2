@@ -4,41 +4,33 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import java.util.Random;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.view.View;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.cs206.cs206_g2t7fe.databinding.ActivityAddSurpriseVenueEventBinding;
+import com.google.firebase.database.*;
+import org.jetbrains.annotations.NotNull;
 
-import com.cs206.cs206_g2t7fe.databinding.ActivityCreateEventBinding;
-
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Random;
 
-public class CreateEvent extends AppCompatActivity {
+public class AddSurpriseVenueEvent extends AppCompatActivity {
+
+    private ActivityAddSurpriseVenueEventBinding binding;
 
     AppCompatButton submitButton;
 
@@ -46,7 +38,6 @@ public class CreateEvent extends AppCompatActivity {
 
     private Button pickDateBtn;
     private TextView selectedDateTV, Event_Date;
-
 
     private AppBarConfiguration appBarConfiguration;
 //    private ActivityCreateEventBinding binding;
@@ -59,11 +50,15 @@ public class CreateEvent extends AppCompatActivity {
     // Reference for Firebase.
     DatabaseReference databaseReference;
 
+    DatabaseReference databaseVenueReference;
+
     // creating a variable for
     // our object class
     UserEvents userEvents;
 
     private Calendar selectedDate = Calendar.getInstance();
+
+    ArrayList<String> venueArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +70,28 @@ public class CreateEvent extends AppCompatActivity {
         Event_Name = findViewById(R.id.event_name);
         Event_Date = selectedDateTV;
         // below line is used to get the
+
         // instance of our FIrebase database.
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("UserEvents");
+        databaseVenueReference = firebaseDatabase.getReference("venueLocation");
+
+        if (getIntent().hasExtra("venueID")) {
+            String venueID = getIntent().getStringExtra("venueID");
+            getVenueInformation(venueID, new MyCallback() {
+                @Override
+                public ArrayList<String> onCallback(ArrayList<String> value) {
+                    venueArray = value;
+                    return null;
+                }
+            });
+        }
+
+        if (databaseVenueReference == null) {
+            System.out.println("databaseVenueReference is null");
+        }
 
         // initializing our object
         // class variable.
@@ -114,7 +126,7 @@ public class CreateEvent extends AppCompatActivity {
                 // on below line we are creating a variable for date picker dialog.
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         // on below line we are passing context.
-                        CreateEvent.this,
+                        AddSurpriseVenueEvent.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
@@ -167,12 +179,12 @@ public class CreateEvent extends AppCompatActivity {
                 System.out.println(selectedDate);
                 long epochMillis = selectedDate.getTimeInMillis();
                 if (epochMillis == 0){
-                    Toast.makeText(CreateEvent.this, "Please add some date.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddSurpriseVenueEvent.this, "Please add some date.", Toast.LENGTH_SHORT).show();
                 }
                 else if (TextUtils.isEmpty(event_name[0])) {
                     // if the text fields are empty
                     // then show the below message.
-                    Toast.makeText(CreateEvent.this, "Please add the event data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddSurpriseVenueEvent.this, "Please add the event data.", Toast.LENGTH_SHORT).show();
                 }else {
                     // else call the method to add
                     // data to our database.
@@ -200,10 +212,12 @@ public class CreateEvent extends AppCompatActivity {
         String randomString = generateRandomString(10); // Generates a random string of 10 characters
         System.out.println(randomString);
 
+
         userEvents.setEventID(randomString);
         userEvents.setEventName(eventName);
         userEvents.setEventDate(dateIn);
         userEvents.setUserID(userID);
+        userEvents.setEventLocation(venueArray);
 
         System.out.println(userEvents.getEventID());
 
@@ -214,20 +228,43 @@ public class CreateEvent extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Write was successful!
-                        Toast.makeText(CreateEvent.this, "Data added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddSurpriseVenueEvent.this, "Data added", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Write failed
-                        Toast.makeText(CreateEvent.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddSurpriseVenueEvent.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+    public interface MyCallback {
+        ArrayList<String> onCallback(ArrayList<String> value);
+    }
+
+    public void getVenueInformation(String venueID, MyCallback myCallback){
+        System.out.println("This is the venue id" + venueID);
+        databaseVenueReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                ArrayList<String> internal = new ArrayList<>();
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    internal.add(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                }
+                myCallback.onCallback(internal);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void addEventLocation(){
-        Intent intent = new Intent(this, AddNewActivity.class);
+        Intent intent = new Intent(this, EventCreationConfirmationPage.class);
         startActivity(intent);
     }
 }

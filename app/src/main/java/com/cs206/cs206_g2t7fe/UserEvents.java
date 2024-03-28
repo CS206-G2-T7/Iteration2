@@ -2,6 +2,7 @@ package com.cs206.cs206_g2t7fe;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,10 @@ public class UserEvents {
     private String eventName;
 
     private Long eventDate;
+
+    private ArrayList<String> eventLocation;
+
+    private ArrayList<String> invitees;
 
     public UserEvents(){
 
@@ -36,6 +41,10 @@ public class UserEvents {
         return eventDate;
     }
 
+    public ArrayList<String> getEventVenue() {return eventLocation;}
+
+    public ArrayList<String> getEventInvitees() {return invitees;}
+
     public void setEventID(String eventID) {
         this.eventID = eventID;
     }
@@ -52,6 +61,10 @@ public class UserEvents {
         this.eventDate = eventDate;
     }
 
+    public void setEventLocation(ArrayList<String> eventLocation) {this.eventLocation = eventLocation;}
+
+    public void setEventInvitees(ArrayList<String> invitees) {this.invitees = invitees;}
+
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
@@ -59,6 +72,8 @@ public class UserEvents {
         result.put("eventName", eventName);
         result.put("userID", userID);
         result.put("eventDate", eventDate);
+        result.put("eventLocation", eventLocation);
+        result.put("eventInvitees", invitees);
         return result;
     }
 
