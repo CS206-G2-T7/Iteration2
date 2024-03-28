@@ -36,7 +36,7 @@
         android:layout_width="302dp"
         android:layout_height="73dp"
         android:layout_marginEnd="34dp"
-        android:text="What are your food preferances"
+        android:text="What are your food preferences?"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
