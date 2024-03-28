@@ -237,7 +237,7 @@ public class SurpriseMePage extends AppCompatActivity {
     }
 
     public void addNewEvent(){
-        Intent intent = new Intent(this, SurpriseMeConfirmation.class);
+        Intent intent = new Intent(this, AddSurpriseVenueEvent.class);
         String venueID = generateRandomString(10);
         storeLocationToFirebase(venueID, placeName, placeAddress);
         intent.putExtra("placename", placeName);

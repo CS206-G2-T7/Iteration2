@@ -216,7 +216,7 @@ public class AddSurpriseVenueEvent extends AppCompatActivity {
     }
 
     public void addEventLocation(){
-        Intent intent = new Intent(this, AddNewActivity.class);
+        Intent intent = new Intent(this, EventCreationConfirmationPage.class);
         startActivity(intent);
     }
 }
