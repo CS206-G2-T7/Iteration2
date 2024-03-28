@@ -20,10 +20,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.cs206.cs206_g2t7fe.databinding.ActivityAddSurpriseVenueEventBinding;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.*;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Random;
 
 public class AddSurpriseVenueEvent extends AppCompatActivity {
@@ -48,11 +50,15 @@ public class AddSurpriseVenueEvent extends AppCompatActivity {
     // Reference for Firebase.
     DatabaseReference databaseReference;
 
+    DatabaseReference databaseVenueReference;
+
     // creating a variable for
     // our object class
     UserEvents userEvents;
 
     private Calendar selectedDate = Calendar.getInstance();
+
+    ArrayList<String> venueArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +70,28 @@ public class AddSurpriseVenueEvent extends AppCompatActivity {
         Event_Name = findViewById(R.id.event_name);
         Event_Date = selectedDateTV;
         // below line is used to get the
+
         // instance of our FIrebase database.
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("UserEvents");
+        databaseVenueReference = firebaseDatabase.getReference("venueLocation");
+
+        if (getIntent().hasExtra("venueID")) {
+            String venueID = getIntent().getStringExtra("venueID");
+            getVenueInformation(venueID, new MyCallback() {
+                @Override
+                public ArrayList<String> onCallback(ArrayList<String> value) {
+                    venueArray = value;
+                    return null;
+                }
+            });
+        }
+
+        if (databaseVenueReference == null) {
+            System.out.println("databaseVenueReference is null");
+        }
 
         // initializing our object
         // class variable.
@@ -189,10 +212,12 @@ public class AddSurpriseVenueEvent extends AppCompatActivity {
         String randomString = generateRandomString(10); // Generates a random string of 10 characters
         System.out.println(randomString);
 
+
         userEvents.setEventID(randomString);
         userEvents.setEventName(eventName);
         userEvents.setEventDate(dateIn);
         userEvents.setUserID(userID);
+        userEvents.setEventLocation(venueArray);
 
         System.out.println(userEvents.getEventID());
 
@@ -213,6 +238,29 @@ public class AddSurpriseVenueEvent extends AppCompatActivity {
                         Toast.makeText(AddSurpriseVenueEvent.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public interface MyCallback {
+        ArrayList<String> onCallback(ArrayList<String> value);
+    }
+
+    public void getVenueInformation(String venueID, MyCallback myCallback){
+        System.out.println("This is the venue id" + venueID);
+        databaseVenueReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                ArrayList<String> internal = new ArrayList<>();
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    internal.add(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                }
+                myCallback.onCallback(internal);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void addEventLocation(){
