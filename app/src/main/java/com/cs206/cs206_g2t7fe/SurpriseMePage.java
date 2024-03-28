@@ -12,11 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.cs206.cs206_g2t7fe.ui.CustomLoading;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -26,6 +29,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.cs206.cs206_g2t7fe.databinding.ActivitySurpriseMePageBinding;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 import com.google.maps.model.Photo;
@@ -39,6 +44,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Instant;
+import java.util.Random;
 
 
 public class SurpriseMePage extends AppCompatActivity {
@@ -60,6 +66,17 @@ public class SurpriseMePage extends AppCompatActivity {
     String placeName;
     String placeRef;
     int count = 0;
+
+    // creating a variable for our
+    // Firebase Database.
+    FirebaseDatabase firebaseDatabase;
+
+    // creating a variable for our Database
+    // Reference for Firebase.
+    DatabaseReference databaseReference;
+
+    venueLocation venueLocation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +102,18 @@ public class SurpriseMePage extends AppCompatActivity {
 //            pricepoint = pricepoint / /*number of people in group*/
 
 //            TensorFlowLite.init();
+
+
+            venueLocation = new venueLocation();
+
+            // below line is used to get the
+            // instance of our FIrebase database.
+            firebaseDatabase = FirebaseDatabase.getInstance();
+
+            // below line is used to get reference for our database.
+            databaseReference = firebaseDatabase.getReference("venueLocation");
+
+
             String location = getIntent().getExtras().getString("location");
             Log.v("location", location);
             LatLng centralLoc = api.getLatLng(location);
@@ -209,8 +238,11 @@ public class SurpriseMePage extends AppCompatActivity {
 
     public void addNewEvent(){
         Intent intent = new Intent(this, SurpriseMeConfirmation.class);
+        String venueID = generateRandomString(10);
+        storeLocationToFirebase(venueID, placeName, placeAddress);
         intent.putExtra("placename", placeName);
         intent.putExtra("placeaddress", placeAddress);
+        intent.putExtra("venueID", venueID);
         startActivity(intent);
     }
 
@@ -252,5 +284,40 @@ public class SurpriseMePage extends AppCompatActivity {
 //            locationRef.setText("");
 //        }
         float placeRating = currentDisplay.rating;
+    }
+
+    public String generateRandomString(int length) {
+        char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789AAA".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    public void storeLocationToFirebase(String venueID, String venueName, String venueLocationInput){
+
+        venueLocation.setLocationID(venueID);
+        venueLocation.setLocationName(venueName);
+        venueLocation.setVenueAddress(venueLocationInput);
+
+        databaseReference.child(venueID).setValue(venueLocation)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Write was successful!
+                        Toast.makeText(SurpriseMePage.this, "Data added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Write failed
+                        Toast.makeText(SurpriseMePage.this, "Fail to add data " + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 }

@@ -65,4 +65,5 @@
     <string name="title_activity_user_onboarding_page">UserOnboardingPage</string>
     <string name="title_activity_venue_search">venueSearch</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_add_surprise_venue_event">AddSurpriseVenueEvent</string>
 </resources>

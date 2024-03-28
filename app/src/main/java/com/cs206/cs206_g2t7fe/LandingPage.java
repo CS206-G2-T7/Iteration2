@@ -234,7 +234,7 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        locationSelect = findViewById(R.id.locationSelect);
+        locationSelect = (Spinner) findViewById(R.id.locationSelect);
         ArrayAdapter<String> mrtList = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Mrtlocations.getMrtList());
         //set the spinners adapter to the previously created one.
         locationSelect.setAdapter(mrtList);
