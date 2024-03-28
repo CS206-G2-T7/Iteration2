@@ -91,6 +91,8 @@ public class SurpriseMePage extends AppCompatActivity {
             //LatLng centralloc = api.getLatLng("simei"/*insert user address here(location)*/);
             //String query = "restaurants around $" + pricepoint;
             //i prefixed the query location for now
+
+
             this.searchResults = api.searchForPlace("medium priced restaurant", centralLoc.lat, centralLoc.lng);
             Toast.makeText(getApplicationContext(),
                             "api worked",
