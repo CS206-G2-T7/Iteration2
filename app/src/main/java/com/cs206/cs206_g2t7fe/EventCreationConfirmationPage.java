@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.cs206.cs206_g2t7fe.databinding.ActivityEventCreationConfirmationPageBinding;
+import com.google.maps.model.LatLng;
 
 public class EventCreationConfirmationPage extends AppCompatActivity {
 
@@ -26,7 +28,6 @@ public class EventCreationConfirmationPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityEventCreationConfirmationPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

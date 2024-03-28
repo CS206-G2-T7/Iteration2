@@ -3,6 +3,7 @@ package com.cs206.cs206_g2t7fe;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
@@ -76,7 +77,10 @@ public class AddNewActivity extends AppCompatActivity {
     }
 
     public void addByLocationNext(){
+        String location = getIntent().getExtras().getString("location");
+        Log.v("location", location);
         Intent intent = new Intent(this, VenueRecommendations.class);
+        intent.putExtra("location", location);
         startActivity(intent);
     }
 
