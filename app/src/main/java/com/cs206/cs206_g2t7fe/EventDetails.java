@@ -53,6 +53,11 @@ public class EventDetails extends AppCompatActivity {
 
     HashMap<String, String> eventMap;
 
+    private ListView mListView;
+
+    venueAdapter venueAdapter;
+
+
     int placesLinearLayoutID = 0;
 
     int inviteesLinearLayoutID = 0;
@@ -219,6 +224,8 @@ public class EventDetails extends AppCompatActivity {
                 // Instantiate the ListView
                 ListView listView = new ListView(this);
 
+                listView.setId(View.generateViewId());
+
                 // Get the parent view and existing view
                 ViewGroup parent = (ViewGroup) findViewById(R.id.container);
                 View existingView = findViewById(existingViewId);
@@ -236,7 +243,27 @@ public class EventDetails extends AppCompatActivity {
 
                 System.out.println(arrayList);
 
+                for (int i=1; i<arrayList.size(); i++){
+                    System.out.println(arrayList.get(i));
+                }
+
                 System.out.println("This is the event venues data " + entry.getValue());
+
+                venueInformation venueInformation;
+
+                if (arrayList.size()%2==0){
+                    venueInformation = new venueInformation(arrayList.get(0), arrayList.get(1), arrayList.get(2));
+                }else{
+                    venueInformation = new venueInformation(arrayList.get(0), arrayList.get(1), arrayList.get(3));
+                }
+
+                ArrayList<venueInformation> venueInfo = new ArrayList<>();
+                venueInfo.add(venueInformation);
+
+                mListView = findViewById(listView.getId());
+                //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
+                venueAdapter = new venueAdapter(this, venueInfo);
+                mListView.setAdapter(venueAdapter);
 
             } else{
                 System.out.println("Hello");
