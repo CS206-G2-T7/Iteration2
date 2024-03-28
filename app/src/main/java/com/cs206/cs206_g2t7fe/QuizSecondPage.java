@@ -64,6 +64,8 @@ public class QuizSecondPage extends AppCompatActivity {
         AppCompatButton option4 = findViewById(R.id.quiz_qn2_op4);
         AppCompatButton option5 = findViewById(R.id.quiz_qn2_op5);
         AppCompatButton option6 = findViewById(R.id.quiz_qn2_op6);
+        AppCompatButton option7 = findViewById(R.id.quiz_qn2_op7);
+        AppCompatButton option8 = findViewById(R.id.quiz_qn2_op8);
 
 
         // change colours of options when clicked
@@ -73,6 +75,9 @@ public class QuizSecondPage extends AppCompatActivity {
         option4.setOnClickListener(colourChangeListener(option4));
         option5.setOnClickListener(colourChangeListener(option5));
         option6.setOnClickListener(colourChangeListener(option6));
+        option7.setOnClickListener(colourChangeListener(option7));
+        option8.setOnClickListener(colourChangeListener(option8));
+
 
         // set up "next" button
         setUpNextButton(next);
