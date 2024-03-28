@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -29,10 +31,7 @@ import com.google.firebase.database.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class EventDetails extends AppCompatActivity {
 
@@ -54,6 +53,10 @@ public class EventDetails extends AppCompatActivity {
 
     HashMap<String, String> eventMap;
 
+    int placesLinearLayoutID = 0;
+
+    int inviteesLinearLayoutID = 0;
+
     interface MyCallback {
         HashMap<String, String> onCallback(HashMap<String, String> value);
     }
@@ -72,6 +75,7 @@ public class EventDetails extends AppCompatActivity {
                         for (DataSnapshot grandChildSnapShot: childSnapshot.getChildren()){
                             System.out.println(grandChildSnapShot.getValue());
                             System.out.println("Matched");
+
                             if (grandChildSnapShot.getKey().equals("eventDate")){
 
                                 Date date = new Date(grandChildSnapShot.getValue(Long.class));
@@ -80,7 +84,7 @@ public class EventDetails extends AppCompatActivity {
                                 String formattedDate = sdf.format(date);
 
                                 internalHashMap.put("eventDate", formattedDate);
-                            }else{
+                            } else{
                                 internalHashMap.put(grandChildSnapShot.getKey(), grandChildSnapShot.getValue().toString());
                             }
                         }
@@ -110,8 +114,7 @@ public class EventDetails extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
 
-
-
+            System.out.println("These are the keys:  " + entry.getKey());
             if (entry.getKey().equals("eventName")){
                 TextView eventNameTextView = new TextView(this);
                 eventNameTextView.setText(entry.getValue());
@@ -143,6 +146,31 @@ public class EventDetails extends AppCompatActivity {
                 // Add TextView to your LinearLayout
                 contentLayout.addView(staticTextView1);
 
+                //Get The Base Root Group
+                ConstraintLayout root = findViewById(R.id.container);
+
+                // Create a new LinearLayout
+                LinearLayout linearLayout2 = new LinearLayout(this);
+
+                // Set some layout parameters
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                );
+
+                linearLayout2.setLayoutParams(layoutParams);
+
+                // Set orientation of LinearLayout
+                linearLayout2.setOrientation(LinearLayout.VERTICAL);
+
+                // Set an id to LinearLayout
+                placesLinearLayoutID = View.generateViewId();
+                linearLayout2.setId(placesLinearLayoutID);
+
+                // Add LinearLayout to the root view
+                // Please replace root with your root ViewGroup instance
+                root.addView(linearLayout2);
+
                 TextView staticTextView2 = new TextView(this);
                 staticTextView2.setText("Who Is Coming Along");
                 staticTextView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
@@ -156,31 +184,59 @@ public class EventDetails extends AppCompatActivity {
                 contentLayout.addView(staticTextView2);
 
                 //Get The Base Root Group
-                ConstraintLayout root = findViewById(R.id.container);
+                ConstraintLayout root2 = findViewById(R.id.container);
 
                 // Create a new LinearLayout
                 LinearLayout linearLayout = new LinearLayout(this);
 
                 // Set some layout parameters
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT
                 );
 
-                linearLayout.setLayoutParams(layoutParams);
+                linearLayout.setLayoutParams(layoutParams2);
 
                 // Set orientation of LinearLayout
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
 
                 // Set an id to LinearLayout
-                linearLayout.setId(View.generateViewId());
+                inviteesLinearLayoutID = View.generateViewId();
+                linearLayout.setId(inviteesLinearLayoutID);
 
                 // Add LinearLayout to the root view
                 // Please replace root with your root ViewGroup instance
-                root.addView(linearLayout);
+                root2.addView(linearLayout);
 
             } else if (entry.getKey().equals("eventID")) {
                 continue;
+
+            } else if (entry.getKey().equals("eventVenue")) {
+
+                System.out.println("Inside Venues: ");
+                int existingViewId = placesLinearLayoutID;
+
+                // Instantiate the ListView
+                ListView listView = new ListView(this);
+
+                // Get the parent view and existing view
+                ViewGroup parent = (ViewGroup) findViewById(R.id.container);
+                View existingView = findViewById(existingViewId);
+
+                // Calculate the position to add the ListView
+                int position = parent.indexOfChild(existingView) + 1;
+
+                // Add the ListView to the parent layout
+                parent.addView(listView, position);
+
+                String listString = entry.getValue();
+                List<String> list = Arrays.asList(listString.substring(1, listString.length() - 1).split(", "));
+
+                ArrayList<String> arrayList = new ArrayList<>(list);
+
+                System.out.println(arrayList);
+
+                System.out.println("This is the event venues data " + entry.getValue());
 
             } else{
                 System.out.println("Hello");
