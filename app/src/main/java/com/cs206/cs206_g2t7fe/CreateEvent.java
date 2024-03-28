@@ -86,9 +86,11 @@ public class CreateEvent extends AppCompatActivity {
         userEvents = new UserEvents();
 
         // Storing data into SharedPreferences
-        SharedPreferences sharedPreferences = this.getSharedPreferences("SharedPref",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref",MODE_PRIVATE);
 
         String userID= sharedPreferences.getString("userID", null);
+
+        System.out.println("This is the create event userID " + userID);
 
         // on below line we are initializing our variables.
         pickDateBtn = findViewById(R.id.idBtnPickDate);

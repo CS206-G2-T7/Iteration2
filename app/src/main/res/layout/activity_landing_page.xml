@@ -65,6 +65,17 @@
                 app:layout_constraintTop_toTopOf="@+id/nav_host_fragment_activity_landing_page"
                 app:layout_constraintVertical_bias="0.102"/>
 
+        <Spinner
+                android:id="@+id/locationSelect"
+                android:layout_width="200dp"
+                android:layout_height="31dp"
+                app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.343" />
+
         <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="56dp"
@@ -224,16 +235,6 @@
                 android:id="@+id/list_view"
                 app:menu="@menu/bottom_menu" />
 
-        <Spinner
-            android:id="@+id/locationSelect"
-            android:layout_width="200dp"
-            android:layout_height="31dp"
-            app:layout_constraintBottom_toTopOf="@+id/MainSearchBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.343" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
