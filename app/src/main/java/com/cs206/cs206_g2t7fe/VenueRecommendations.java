@@ -170,7 +170,7 @@ public class VenueRecommendations extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_venue_recommendations;
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_venue_recommendations);
         if (navHostFragment != null) {
             fragmentManager.beginTransaction().hide(navHostFragment).commit();
             // Use this to show it again
