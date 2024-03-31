@@ -131,87 +131,6 @@ public class EventDetails extends AppCompatActivity {
                 eventNameTextView.setTextColor(Color.parseColor("#006400"));
                 contentLayout.addView(eventNameTextView);
 
-                TextView staticTextView1 = new TextView(this);
-                staticTextView1.setText("Places You Are Visiting");
-                staticTextView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                staticTextView1.setTypeface(eventNameTextView.getTypeface(), Typeface.BOLD);
-                staticTextView1.setTextColor(Color.BLACK);
-
-                LinearLayout.LayoutParams layoutParamsForStatic = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-
-                // Set rules to LayoutParams
-                layoutParamsForStatic.gravity = Gravity.CENTER;
-
-                // Add LayoutParams to TextView
-                staticTextView1.setLayoutParams(layoutParamsForStatic);
-
-                // Add TextView to your LinearLayout
-                contentLayout.addView(staticTextView1);
-
-                //Get The Base Root Group
-                ConstraintLayout root = findViewById(R.id.container);
-
-                // Create a new LinearLayout
-                LinearLayout linearLayout2 = new LinearLayout(this);
-
-                // Set some layout parameters
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT
-                );
-
-                linearLayout2.setLayoutParams(layoutParams);
-
-                // Set orientation of LinearLayout
-                linearLayout2.setOrientation(LinearLayout.VERTICAL);
-
-                // Set an id to LinearLayout
-                placesLinearLayoutID = View.generateViewId();
-                linearLayout2.setId(placesLinearLayoutID);
-
-                // Add LinearLayout to the root view
-                // Please replace root with your root ViewGroup instance
-                root.addView(linearLayout2);
-
-                TextView staticTextView2 = new TextView(this);
-                staticTextView2.setText("Who Is Coming Along");
-                staticTextView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                staticTextView2.setTypeface(eventNameTextView.getTypeface(), Typeface.BOLD);
-                staticTextView2.setTextColor(Color.BLACK);
-
-                // Add LayoutParams to TextView
-                staticTextView2.setLayoutParams(layoutParamsForStatic);
-
-                // Add TextView to your LinearLayout
-                contentLayout.addView(staticTextView2);
-
-                //Get The Base Root Group
-                ConstraintLayout root2 = findViewById(R.id.container);
-
-                // Create a new LinearLayout
-                LinearLayout linearLayout = new LinearLayout(this);
-
-                // Set some layout parameters
-                LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT
-                );
-
-                linearLayout.setLayoutParams(layoutParams2);
-
-                // Set orientation of LinearLayout
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-
-                // Set an id to LinearLayout
-                inviteesLinearLayoutID = View.generateViewId();
-                linearLayout.setId(inviteesLinearLayoutID);
-
-                // Add LinearLayout to the root view
-                // Please replace root with your root ViewGroup instance
-                root2.addView(linearLayout);
 
             } else if (entry.getKey().equals("eventID")) {
                 continue;
@@ -234,7 +153,7 @@ public class EventDetails extends AppCompatActivity {
                 int position = parent.indexOfChild(existingView) + 1;
 
                 // Add the ListView to the parent layout
-                parent.addView(listView, position);
+                contentLayout.addView(listView, position);
 
                 String listString = entry.getValue();
                 List<String> list = Arrays.asList(listString.substring(1, listString.length() - 1).split(", "));
@@ -260,7 +179,7 @@ public class EventDetails extends AppCompatActivity {
                 ArrayList<venueInformation> venueInfo = new ArrayList<>();
                 venueInfo.add(venueInformation);
 
-                mListView = findViewById(listView.getId());
+                mListView = findViewById(R.id.places_list_view);
                 //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
                 venueAdapter = new venueAdapter(this, venueInfo);
                 mListView.setAdapter(venueAdapter);
