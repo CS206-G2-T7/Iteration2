@@ -452,6 +452,7 @@ public class LandingPage extends AppCompatActivity {
 
     public void createNewEvent() {
         Intent intent = new Intent(this, CreateEvent.class);
+        intent.putExtra("location", location);
         startActivity(intent);
     }
 

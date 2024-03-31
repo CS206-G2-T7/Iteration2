@@ -56,5 +56,7 @@ dependencies {
     implementation("org.slf4j:slf4j-simple:1.7.25")
     implementation("com.squareup.picasso:picasso:2.8")
     //implementation("org.tensorflow:tensorflow-lite:2.8.0")
+    //implementation("org.apache.poi:poi:3.9")
+
 }
 

@@ -120,6 +120,8 @@ public class SurpriseMePage extends AppCompatActivity {
             //LatLng centralloc = api.getLatLng("simei"/*insert user address here(location)*/);
             //String query = "restaurants around $" + pricepoint;
             //i prefixed the query location for now
+
+
             this.searchResults = api.searchForPlace("medium priced restaurant", centralLoc.lat, centralLoc.lng);
             Toast.makeText(getApplicationContext(),
                             "api worked",
@@ -243,6 +245,11 @@ public class SurpriseMePage extends AppCompatActivity {
         intent.putExtra("placename", placeName);
         intent.putExtra("placeaddress", placeAddress);
         intent.putExtra("venueID", venueID);
+        try {
+            api.shutdown();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         startActivity(intent);
     }
 

@@ -227,7 +227,10 @@ public class CreateEvent extends AppCompatActivity {
     }
 
     public void addEventLocation(){
+        String location = getIntent().getExtras().getString("location");
+        Log.v("location", location);
         Intent intent = new Intent(this, AddNewActivity.class);
+        intent.putExtra("location", location);
         startActivity(intent);
     }
 }
