@@ -67,4 +67,6 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_add_surprise_venue_event">AddSurpriseVenueEvent</string>
     <string name="title_activity_dynamic_venue_detail">DynamicVenueDetail</string>
+    <string name="title_activity_add_friends_empty">AddFriendsEmpty</string>
+    <string name="title_activity_add_friends">AddFriends</string>
 </resources>
