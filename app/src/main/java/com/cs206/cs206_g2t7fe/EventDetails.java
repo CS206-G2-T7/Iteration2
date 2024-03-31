@@ -186,6 +186,20 @@ public class EventDetails extends AppCompatActivity {
                 //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, keyList);
                 venueAdapter = new venueAdapter(this, venueInfo);
                 mListView.setAdapter(venueAdapter);
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // get the associated Event object
+                        venueInformation venue_info = venueInfo.get(position);
+
+                        // get the unique id
+                        String uniqueId = venue_info.getLocationID();
+
+                        toVenueInformationPage(eventMap);
+
+                        // You can now use this uniqueId to pull event information from the backend database
+                    }
+                });
 
             } else if (entry.getKey().equals("eventInvitees")){
                 System.out.println("Invitees Found");
@@ -281,6 +295,12 @@ public class EventDetails extends AppCompatActivity {
     public void toInvitePage(String eventID){
         Intent intent = new Intent(this, AddFriendsEmpty.class);
         intent.putExtra("eventID", eventID);
+        startActivity(intent);
+    }
+
+    public void toVenueInformationPage (HashMap<String, String> map){
+        Intent intent = new Intent(this, DynamicVenueDetail.class);
+        intent.putExtra("venueDetails", map);
         startActivity(intent);
     }
 
