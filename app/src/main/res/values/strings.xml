@@ -69,4 +69,6 @@
     <string name="title_activity_dynamic_venue_detail">DynamicVenueDetail</string>
     <string name="title_activity_add_friends_empty">AddFriendsEmpty</string>
     <string name="title_activity_add_friends">AddFriends</string>
+    <string name="title_activity_acknowledge_add">AcknowledgeAdd</string>
+    <string name="title_activity_add_friend_confirmation_page">AddFriendConfirmationPage</string>
 </resources>

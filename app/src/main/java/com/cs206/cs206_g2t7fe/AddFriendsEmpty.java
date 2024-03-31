@@ -1,7 +1,13 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.fragment.NavHostFragment;
@@ -18,6 +24,8 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityAddFriendsEmptyBinding;
 public class AddFriendsEmpty extends AppCompatActivity {
 
     private ActivityAddFriendsEmptyBinding binding;
+    ImageButton backButton;
+    Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,73 @@ public class AddFriendsEmpty extends AppCompatActivity {
             // Use this to show it again
             // fragmentManager.beginTransaction().show(navHostFragment).commit();
         }
+
+        setUpButtons();
+
+        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMainPage();
+            }
+        });
+//
+//        nextButton= (Button) findViewById(R.id.nextButton);
+//        nextButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                addFriend();
+//            }
+//        });
     }
 
+    public void setUpButtons() {
+        Button person1 = findViewById(R.id.person1);
+        Button person2 = findViewById(R.id.person2);
+
+        person1.setOnClickListener(colourChangeListener(person1));
+        person2.setOnClickListener(colourChangeListener(person2));
+
+        setUpNextButton();
+    }
+
+    public View.OnClickListener colourChangeListener (Button b) {
+        // return this variable
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                b.setBackgroundResource(R.drawable.button_background);
+
+                Button next = (Button) findViewById(R.id.nextButton);
+                next.setEnabled(true);
+                next.setBackgroundResource(R.drawable.button_background);
+            }
+        };
+    }
+
+    public void setUpNextButton() {
+        Button next = findViewById(R.id.nextButton);
+
+        // set default state
+        next.setEnabled(false);
+
+        // navigates to next quiz page
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFriend();
+            }
+        });
+    }
+
+    public void backToMainPage(){
+        Intent intent = new Intent(this, LandingPage.class);
+        startActivity(intent);
+    }
+
+    public void addFriend(){
+        Intent intent = new Intent(this, AcknowledgeAdd.class);
+        startActivity(intent);
+    }
 }
