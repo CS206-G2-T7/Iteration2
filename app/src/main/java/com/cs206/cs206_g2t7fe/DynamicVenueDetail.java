@@ -1,6 +1,10 @@
 package com.cs206.cs206_g2t7fe;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -12,6 +16,7 @@ import com.cs206.cs206_g2t7fe.databinding.ActivityDynamicVenueDetailBinding;
 public class DynamicVenueDetail extends AppCompatActivity {
 
     private ActivityDynamicVenueDetailBinding binding;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,24 @@ public class DynamicVenueDetail extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_dynamic_venue_detail);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        SharedPreferences sharedPreferences2 = getSharedPreferences("SharedPref",MODE_PRIVATE);
+
+        String userID= sharedPreferences2.getString("userID", null);
+
+        backButton = (ImageButton) findViewById(R.id.backButtonDynamicVenueDisplay);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMainPage(userID);
+            }
+        });
+
+    }
+    public void backToMainPage(String userID){
+        Intent intent = new Intent(this, LandingPage.class);
+        intent.putExtra("userID", userID);
+        startActivity(intent);
     }
 
 }
