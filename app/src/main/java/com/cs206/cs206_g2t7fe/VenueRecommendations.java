@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 import com.cs206.cs206_g2t7fe.ui.CustomLoading;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -166,6 +168,14 @@ public class VenueRecommendations extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_venue_recommendations);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_venue_recommendations;
+        if (navHostFragment != null) {
+            fragmentManager.beginTransaction().hide(navHostFragment).commit();
+            // Use this to show it again
+            // fragmentManager.beginTransaction().show(navHostFragment).commit();
+        }
     }
 
     public void confirmation(){
