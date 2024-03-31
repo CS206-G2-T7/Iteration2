@@ -36,7 +36,7 @@
         android:layout_width="302dp"
         android:layout_height="73dp"
         android:layout_marginEnd="34dp"
-        android:text="What are your food preferances"
+        android:text="What are your food preferences?"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
@@ -62,7 +62,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quiz_qn2_op1"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="35dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="34dp"
         android:background="@drawable/text_background"
@@ -74,12 +74,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/quiz_background"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quiz_qn2_op2"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="35dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="34dp"
@@ -97,7 +97,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quiz_qn2_op3"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="35dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="34dp"
@@ -115,7 +115,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quiz_qn2_op4"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="35dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="34dp"
@@ -133,12 +133,12 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quiz_qn2_op5"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="35dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="34dp"
         android:background="@drawable/text_background"
-        android:text="Bistro"
+        android:text="Italian"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
@@ -151,7 +151,43 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quiz_qn2_op6"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/text_background"
+        android:text="Korean"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_qn2_op5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quiz_qn2_op7"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/text_background"
+        android:text="Thai"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
+        app:layout_constraintEnd_toEndOf="@+id/quiz_background"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/quiz_background"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_qn2_op6"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quiz_qn2_op8"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="34dp"
@@ -161,9 +197,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/quiz_background"
         app:layout_constraintEnd_toEndOf="@+id/quiz_background"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="@+id/quiz_background"
-        app:layout_constraintTop_toBottomOf="@+id/quiz_qn2_op5"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_qn2_op7"
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton

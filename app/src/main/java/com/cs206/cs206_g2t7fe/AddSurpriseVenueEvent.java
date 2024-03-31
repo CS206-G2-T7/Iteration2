@@ -251,7 +251,12 @@ public class AddSurpriseVenueEvent extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
                 ArrayList<String> internal = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    internal.add(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                    System.out.println("This is the venuesss id " + dataSnapshot1.getKey());
+                    if (dataSnapshot1.getKey().equals(venueID)){
+                        for (DataSnapshot dataSnapshot2: dataSnapshot1.getChildren()){
+                            internal.add(Objects.requireNonNull(dataSnapshot2.getValue()).toString());
+                        }
+                    }
                 }
                 myCallback.onCallback(internal);
             }

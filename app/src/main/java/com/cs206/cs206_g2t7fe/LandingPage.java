@@ -318,8 +318,9 @@ public class LandingPage extends AppCompatActivity {
                                                     String eventID = childSnapshot.child("eventID").getValue(String.class);
                                                     Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
                                                     String eventHost = childSnapshot.child("userID").getValue(String.class);
+                                                    ArrayList<String> eventVenues = childSnapshot.child("eventLocation").getValue(ArrayList.class);
 
-                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                                    EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost, eventVenues);
                                                     eventList.add(eventsDisplay);
                                                     keyList.add(eventName);
                                                 }
@@ -392,8 +393,9 @@ public class LandingPage extends AppCompatActivity {
                                             String eventID = childSnapshot.child("eventID").getValue(String.class);
                                             Long eventDate = childSnapshot.child("eventDate").getValue(Long.class);
                                             String eventHost = childSnapshot.child("userID").getValue(String.class);
+                                            ArrayList<String> eventVenues = childSnapshot.child("eventLocation").getValue(ArrayList.class);
 
-                                            EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost);
+                                            EventsDisplay eventsDisplay = new EventsDisplay(eventName, eventID, eventDate, eventHost, eventVenues);
                                             eventList.add(eventsDisplay);
                                             keyList.add(eventName);
                                         }
