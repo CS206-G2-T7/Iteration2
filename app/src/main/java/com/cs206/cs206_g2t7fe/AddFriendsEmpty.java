@@ -2,6 +2,9 @@ package com.cs206.cs206_g2t7fe;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,10 @@ public class AddFriendsEmpty extends AppCompatActivity {
         binding = ActivityAddFriendsEmptyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().hide();
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -32,6 +39,14 @@ public class AddFriendsEmpty extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_add_friends_empty);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_add_friends_empty);
+        if (navHostFragment != null) {
+            fragmentManager.beginTransaction().hide(navHostFragment).commit();
+            // Use this to show it again
+            // fragmentManager.beginTransaction().show(navHostFragment).commit();
+        }
     }
 
 }

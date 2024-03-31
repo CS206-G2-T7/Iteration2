@@ -9,10 +9,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -36,6 +33,8 @@ import java.util.*;
 public class EventDetails extends AppCompatActivity {
 
     ImageButton backButton;
+
+    Button myButton, inviteButton;
 
     private ActivityEventDetailsBinding binding;
 
@@ -61,6 +60,7 @@ public class EventDetails extends AppCompatActivity {
     int placesLinearLayoutID = 0;
 
     int inviteesLinearLayoutID = 0;
+
 
     interface MyCallback {
         HashMap<String, String> onCallback(HashMap<String, String> value);
@@ -118,6 +118,9 @@ public class EventDetails extends AppCompatActivity {
                     LinearLayout.LayoutParams.MATCH_PARENT, // This makes it take up full width
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
+
+            myButton = (Button) findViewById(R.id.InviteButton);
+            myButton.setVisibility(View.INVISIBLE);
 
             System.out.println("These are the keys:  " + entry.getKey());
             if (entry.getKey().equals("eventName")){
@@ -184,8 +187,12 @@ public class EventDetails extends AppCompatActivity {
                 venueAdapter = new venueAdapter(this, venueInfo);
                 mListView.setAdapter(venueAdapter);
 
+            } else if (entry.getKey().equals("eventInvitees")){
+                System.out.println("Invitees Found");
             } else{
                 System.out.println("Hello");
+                myButton = (Button) findViewById(R.id.InviteButton);
+                myButton.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -254,12 +261,26 @@ public class EventDetails extends AppCompatActivity {
                 backToMainPage(userID);
             }
         });
+
+        inviteButton = (Button) findViewById(R.id.InviteButton);
+        inviteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toInvitePage(eventID);
+            }
+        });
     }
 
 
     public void backToMainPage(String userID){
         Intent intent = new Intent(this, LandingPage.class);
         intent.putExtra("userID", userID);
+        startActivity(intent);
+    }
+
+    public void toInvitePage(String eventID){
+        Intent intent = new Intent(this, AddFriendsEmpty.class);
+        intent.putExtra("eventID", eventID);
         startActivity(intent);
     }
 

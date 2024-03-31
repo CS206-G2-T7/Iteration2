@@ -92,12 +92,20 @@
             app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintVertical_bias="0.665"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
     <ListView
-            android:layout_width="302dp"
-            android:layout_height="94dp"
+            android:layout_width="294dp"
+            android:layout_height="72dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintBottom_toTopOf="@+id/nav_view" app:layout_constraintHorizontal_bias="0.547"
             android:layout_marginBottom="80dp" android:id="@+id/invitees_list_view"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView20" app:layout_constraintVertical_bias="0.289"/>
+    <Button
+            android:text="Invite Friends"
+            android:layout_width="138dp"
+            android:layout_height="41dp" android:id="@+id/InviteButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invitees_list_view"
+            app:layout_constraintBottom_toTopOf="@+id/nav_view"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
