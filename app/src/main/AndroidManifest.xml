@@ -17,6 +17,10 @@
             tools:remove="android:appComponentFactory"
             tools:targetApi="31">
         <activity
+                android:name=".DynamicVenueDetail"
+                android:exported="false"
+                android:label="@string/title_activity_dynamic_venue_detail"/>
+        <activity
                 android:name=".AddSurpriseVenueEvent"
                 android:exported="false"
                 android:label="@string/title_activity_add_surprise_venue_event"/>
