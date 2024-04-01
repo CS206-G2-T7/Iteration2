@@ -48,7 +48,7 @@ Button doneButton;
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_add_friends_empty);
+        NavHostFragment navHostFragment = (NavHostFragment) fragmentManager.findFragmentById(R.id.nav_host_fragment_activity_add_friend_confirmation_page);
         if (navHostFragment != null) {
             fragmentManager.beginTransaction().hide(navHostFragment).commit();
             // Use this to show it again
