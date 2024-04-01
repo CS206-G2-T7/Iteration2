@@ -245,11 +245,11 @@ public class SurpriseMePage extends AppCompatActivity {
         intent.putExtra("placename", placeName);
         intent.putExtra("placeaddress", placeAddress);
         intent.putExtra("venueID", venueID);
-        try {
-            api.shutdown();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            api.shutdown();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         startActivity(intent);
     }
 
