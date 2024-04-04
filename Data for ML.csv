@@ -1,0 +1,138 @@
+﻿restaurantId,restaurant,genre,price range
+1,Café Natsu,japanese|cafe,moderate
+2,Mr. Holmes Bakehouse (Pacific Plaza),bakery|café|American,moderate
+3,Craftsmen Coffee (Clarke Quay Central),coffee|café|western,moderate
+4,"hay, gelato.",dessert,cheap
+5,Refuel II,chinese|indian|western|cafe,moderate
+6,BLACK&INK,coffee|café|western,moderate
+7,Jimmy Monkey Cafe & Bar,western|coffee|bar,moderate
+8,OLLA Specialty Coffee (Clementi),coffee|café|western,moderate
+9,Bodacious bar & bistro,bistro|western |bar,expensive
+10,Buttercake N Cream,café|bakery|coffee|tea|dessert,moderate
+11,Baker & Cook - Sunset Way,bakery|café|american,moderate
+12,Baker & Cook - Faber Drive,bakery|café|american,moderate
+13,Baker & Cook - Dempsey,bakery|café|american,moderate
+14,Baker & Cook - Namly,bakery|café|american,moderate
+15,Baker & Cook - Hillcrest,bakery|café|american,moderate
+16,Knots Cafe & Living (Paya Lebar),café|western|coffee,moderate
+17,Coexist Coffee Co.,café|coffee,expensive
+18,Alchemist The Heeren,café|coffee,cheap
+19,FATCAT Ice Cream & Coffee Boutique,dessert|café,cheap
+20,Lola's Cafe,cafe,moderate
+21,Lickers,dessert,cheap
+22,Whisk & Paddle,café|western,moderate
+23,Hello Arigato,japanese|cafe,moderate
+24,Brawn & Brains,café|western|coffee,moderate
+25,Wild Honey,cafe,expensive
+26,La Savoir,french,expensive
+27,MERCI MARCEL ORCHARD,french,moderate
+28,Lady M @ Orchard Central,bakery|french|desserts,moderate
+29,"The Assembly Ground, Cineleisure (Somerset)",western|coffee|desserts|cafe,moderate
+30,The Coffee Academics @ Millenia Walk,café|coffee|desserts,moderate
+31,"Oriole Coffee + Bar (Pan Pacific Serviced Suites, Orchard)",western|coffee|bar,moderate
+32,Nassim Hill Bakery Bistro Bar,bakery|european,moderate
+33,Bacha Coffee ION Orchard,coffee|cafe|desserts,moderate
+34,Hvala @ Chijmes (Flagship),japanese|desserts|coffee,moderate
+35,Sunday Folks ION Orchard,desserts|café|coffee,moderate
+36,AMI Patisserie,french|desserts,expensive
+37,The Larder Cafe,coffee|cafe,moderate
+38,Kraft x Mexicana,mexican,moderate
+39,Three’s A Crowd,cafe,moderate
+40,Slow Boat,café|coffee,moderate
+41,Surrey Hills Deli,café|deli,moderate
+42,Free the Robot,coffee|desserts,moderate
+43,Sarnies,café|coffee,moderate
+44,My Awesome Cafe,café|coffee,moderate
+45,Jypsy One Fullerton,japanese,expensive
+46,Home Dawn @ Clarke Quay,café|coffee,moderate
+47,Ingen Kyoto @ Ion Orchard,japanese,expensive
+48,Plain Meredith (Pet-Friendly Cafe),café|coffee,moderate
+49,Nickel,coffee,moderate
+50,Louisa Coffee,coffee|cafe ,moderate
+51,SUSHI TEI,japanese,moderate
+52,Tora Tora Tora Japanese Restaurant Singapore,japanese,moderate
+53,"Yamagawa Japanese Restaurant, Beach Road",japanese,moderate
+54,Ginza Sushi Ichi Singapore,japanese,very expensive
+55,Sushi Kimura,japanese,very expensive
+56,Itacho Sushi,japanese,moderate
+57,Kei Kaisendon,japanese,moderate
+58,Genki Sushi,japanese,moderate
+59,Ki-sho 葵匠,japanese,very expensie
+60,Tomi Sushi,japanese,moderate
+61,Teppei Japanese Restaurant,japanese,moderate
+62,SUN with MOON Japanese Dining & Cafe,japanese,moderate
+63,The Sushi Bar,japanese,moderate
+64,Yamato Izakaya,japanese,expensive
+65,OTOKO Japanese Restaurant,japanese,moderate
+66,sushi express,japanese,cheap
+67,Ichiban Boshi,japanese,moderate
+68,Misato,japanese,moderate
+69,Tokyo Western Food,western,cheap
+70,Chef's Hats,western,moderate
+71,Seletar Western Food,western,cheap
+72,Buddy Hoagies Café & Grill,western,moderate
+73,5 Star Corner Western Food,western,cheap
+74,Vincent Western Food,western,cheap
+75,iSTEAKS,western,moderate
+76,Tims Restaurant & Cafe,western,moderate
+77,collin's,western,moderate
+78,go2eat western food,western,cheap
+79,Uno Beef House,western,moderate
+80,Canopy Garden Dining,western,expensive
+81,Lawry's The Prime Rib Singapore,western,very expensive
+82,Do & Me Western Stall,western,cheap
+83,Harry's,western,moderate
+84,MediumRare by Saveur,western,moderate
+85,Hot Tomato Bistro,western,expensive
+86,Shashlik Restaurant,"western, russian",expensive
+87,Porta Porta Italian Restaurant,italian,moderate
+88,Garibaldi,italian,very expensive
+89,Etna Italian Restaurant,italian,expensive
+90,Saizeriya,italian,cheap
+91,Tipo Pasta Bar,italian,moderate
+92,Baci Baci Restaurant,italian,expensive
+93,Publico Ristorante,italian,expensive
+94,Altro Zafferano,italian,expensive
+95,Rosso Vino,italian,expensive
+96,Waterfall Ristorante Italiano,italian,very expensive
+97,Amò,italian,expensive
+98,Al Forno,italian,expensive
+99,PastaMania,italian,moderate
+100,Pietro Ristorante Italiano,italian,expensive
+101,Pasta Fresca Da Salvatore,italian,expensive
+102,Limoncello Restaurant,italian,expensive
+103,Pietrasanta The Italian Restaurant,italian,moderate
+104,aston's,western,moderate
+105,Seoul Garden,korean,moderate
+106,Hansik Korean Restaurant,korean,moderate
+107,Doongji Korean Restaurant,korean,moderate
+108,I'm Kim Korean BBQ,korean,moderate
+109,Hanwoori Korean Restaurant,korean,moderate
+110,Bigmama Korean Restaurant,korean,expensive
+111,Guiga Korean BBQ Restaurant,korean,moderate
+112,Chang Korean Charcoal BBQ Restaurant,korean,expensive
+113,Yun Ga Traditional Korean Restaurant,korean,moderate
+114,Nanta BBQ,korean,moderate
+115,Muk-Bang Korean Restaurant,korean,moderate
+116,8 Korean BBQ ,korean,expensive
+117,Hyang Yeon Korean Restaurant,korean,moderate
+118,Kim Dae Mun Korean Food,korean,moderate
+119,Captain Kim Korean BBQ & Hotpot Buffet,korean,moderate
+120,Kim's Family Food Korean Restaurant,korean,moderate
+121,Supulae Korean BBQ,korean,moderate
+122,Woorinara Korean Restaurant,korean,expensive
+123,Soi Thai Kitchen,thai,moderate
+124,Diandin Leluk Thai Restaurant Pte Ltd,thai,expensive
+125,Spicy Thai-Thai Cafe,thai,moderate
+126,Sawadee Thai Cuisine,thai,moderate
+127,GreaThai,thai,moderate
+128,Soi 47 Thai Food,thai,moderate
+129,Sanook Kitchen,thai,moderate
+130,Nangfa Thai Kitchen,thai,expensive
+131,Ah Loy Thai,thai,moderate
+132,Kra pow Thai Restaurant,thai,cheap
+133,Moona Thai Kitchen,thai,moderate
+134,Thai Tantric Authentic Thai Cuisine,thai,moderate
+135,Suk's Thai Kitchen,thai,moderate
+136,Nimman Soi 9 Thai Food,thai,moderate
+137,Beerthai House Restaurant,thai,cheap
